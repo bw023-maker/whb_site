@@ -281,3 +281,64 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   .nav-links { gap: 16px; font-size: 12.5px; }
   .hero { padding: 40px 0 8px; }
 }
+
+/* Prose lists */
+.prose-list { margin: 0 0 22px 0; padding-left: 0; list-style: none; max-width: var(--measure); }
+.prose-list li {
+  font-size: 17.5px; line-height: 1.6; margin-bottom: 10px;
+  padding-left: 22px; position: relative;
+}
+.prose-list li::before {
+  content: ''; position: absolute; left: 0; top: 12px;
+  width: 10px; height: 2px; background: var(--accent);
+}
+
+/* Reading list */
+.group { margin-top: 52px; }
+.group:first-of-type { margin-top: 36px; }
+.group-head {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  max-width: var(--measure);
+}
+.group-dek {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin-bottom: 20px;
+}
+.book { padding: 16px 0; max-width: var(--measure); }
+.book-title {
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.book-title a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.book-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.book-author {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.book-note {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 56ch;
+}
