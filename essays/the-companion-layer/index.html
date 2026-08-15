@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Companion Layer — What Health Becomes</title>
+<meta name="description" content="A personal health companion is not a better portal. It is a different surface, with a specific architecture, most of which now exists — and the constraint has shifted from what we can build to whether patients and health systems would use it.">
+<meta name="author" content="Ben Wilson">
+<link rel="canonical" href="https://whathealthbecomes.com/essays/the-companion-layer/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="What Health Becomes">
+<meta property="og:title" content="The Companion Layer">
+<meta property="og:description" content="A personal health companion is not a better portal. It is a different surface, with a specific architecture, most of which now exists — and the constraint has shifted from what we can build to whether patients and health systems would use it.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body>
+<div class="shell">
+
+  <nav class="nav">
+    <a class="nav-brand" href="/">What Health <em>Becomes</em></a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/essays/" class="on">Essays</a>
+        <a href="/concepts/">Concepts</a>
+        <a href="/reading/">Reading</a>
+        <a href="/about/">About</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">Dark</button>
+    </div>
+  </nav>
+
+  <article class="article">
+    <header class="article-head">
+      <h1 class="article-title">The Companion Layer</h1>
+      <p class="article-dek">A personal health companion is not a better portal. It is a different surface, with a specific architecture, most of which now exists — and the constraint has shifted from what we can build to whether patients and health systems would use it.</p>
+      <div class="article-meta"><span>Ben Wilson</span><span>Draft</span></div>
+    </header>
+
+    <div class="prose">
+      <p>I&#x27;m a believer in what Steven Johnson calls the slow hunch1: an idea that forms over years, swirling in the background as something not yet fully shaped. Darwin is his example — very close to natural selection for decades after the Beagle came home, the thing assembling itself long before he wrote it down.</p>
+      <p>Mine has to do with population health outreach and the coordination burden we hand to patients and families.</p>
+      <p>I&#x27;ve had the chance to run a large health system&#x27;s vaccine program, which came with ownership of quality metrics like Medicare 5-Star flu and Pediatric Combo 10. That work put me next to some genuinely world-class population health outreach: the medical assistant who offers you a flu shot while you&#x27;re in for something else, extended walk-in access during flu season, and the one I want to focus on — the emails, texts, and letters we send to people who are due for something.</p>
+      <p>Here is the structural problem with that last one. Every quality measure has its own cohort, and our systems run outreach per measure. The same person potentially gets a mammogram reminder, a flu text, a statin adherence call, and a colonoscopy letter, from four programs on four schedules, none of which know the others exist.</p>
+      <figure class="fig">
+<svg viewBox="0 0 900 430" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="tick" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L5,3 L0,6" fill="none" stroke="var(--rule)" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <text x="0" y="14" class="mono" font-size="9.5" fill="var(--ink-3)">SENDING PROGRAMS</text>
+  <text x="612" y="14" class="mono" font-size="9.5" fill="var(--ink-3)">ONE PERSON</text>
+
+  <!-- senders -->
+  <g font-size="12.5" fill="var(--ink)">
+    <text x="0" y="56">Influenza campaign</text>
+    <text x="0" y="102">Mammography outreach</text>
+    <text x="0" y="148">Statin adherence</text>
+    <text x="0" y="194">Colorectal screening</text>
+    <text x="0" y="240">Post-visit instructions</text>
+    <text x="0" y="286">Refill reminders</text>
+    <text x="0" y="332">Prior authorization</text>
+  </g>
+  <g class="mono" font-size="8.5" fill="var(--ink-3)">
+    <text x="0" y="70">SMS · SEASONAL</text>
+    <text x="0" y="116">LETTER · ANNUAL</text>
+    <text x="0" y="162">CALL · QUARTERLY</text>
+    <text x="0" y="208">EMAIL · BIENNIAL</text>
+    <text x="0" y="254">PORTAL · PER VISIT</text>
+    <text x="0" y="300">SMS · MONTHLY</text>
+    <text x="0" y="346">PORTAL · AD HOC</text>
+  </g>
+
+  <!-- converging hairlines -->
+  <g fill="none" stroke="var(--rule)" stroke-width="0.9" marker-end="url(#tick)">
+    <path d="M210,52 C400,52 480,150 596,186"/>
+    <path d="M210,98 C400,98 480,160 596,190"/>
+    <path d="M210,144 C400,144 490,170 596,194"/>
+    <path d="M210,190 C400,190 500,192 596,198"/>
+    <path d="M210,236 C400,236 490,220 596,202"/>
+    <path d="M210,282 C400,282 480,232 596,206"/>
+    <path d="M210,328 C400,328 480,244 596,210"/>
+  </g>
+
+  <!-- the person -->
+  <circle cx="628" cy="198" r="15" fill="none" stroke="var(--clock1)" stroke-width="1.4"/>
+  <circle cx="628" cy="198" r="3" fill="var(--clock1)"/>
+  <line x1="628" y1="222" x2="628" y2="268" stroke="var(--clock1)" stroke-width="0.9" stroke-dasharray="2,3"/>
+  <text x="628" y="286" text-anchor="middle" class="serif" font-size="14" fill="var(--ink)">The patient is the integration point</text>
+  <text x="628" y="306" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">Nobody else is holding the whole picture</text>
+
+  <!-- data annotations -->
+  <line x1="0" y1="376" x2="900" y2="376" stroke="var(--rule)" stroke-width="1"/>
+  <g>
+    <text x="0" y="400" class="serif" font-size="19" fill="var(--clock1)">4 in 10</text>
+    <text x="0" y="418" font-size="11" fill="var(--ink-2)">Medicare beneficiaries in highly fragmented care</text>
+  </g>
+  <g>
+    <text x="300" y="400" class="serif" font-size="19" fill="var(--clock1)">13 / 7</text>
+    <text x="300" y="418" font-size="11" fill="var(--ink-2)">visits across practitioners, in one year</text>
+  </g>
+  <g>
+    <text x="600" y="400" class="serif" font-size="19" fill="var(--clock1)">229</text>
+    <text x="600" y="418" font-size="11" fill="var(--ink-2)">other physicians one PCP must coordinate with</text>
+  </g>
+</svg>
+        <figcaption><span class="fignum">Figure 1</span> Health systems manage communications in workstreams, patients do not.</figcaption>
+        <p class="figsrc">Sources: CMS Innovation Center (2022); Pham et al., NEJM (2007); Kern et al., JGIM (2019). Medicare fee-for-service populations.</p>
+      </figure>
+      <p>Visits are only part of it. Add the messages, the calls, the labs, the refills, the prior authorizations, each generated by a different silo and processed by a team handling only what falls in their in-basket. That&#x27;s grounded in scope of practice, which is appropriate. But it&#x27;s also about managing burden on any one team, our aperture problem.</p>
+      <p>So the slow hunch is about a different way to manage outreach and virtual interaction. Breaking the silos. I think AI is the first thing that makes it buildable.</p>
+      <h2>Not a portal</h2>
+      <p>The idea I keep converging on is a personal health companion.</p>
+      <p>This is not a wellness app, and it is not an AI layer bolted onto a patient portal, though it may grow out of one. MyChart and the interfaces like it exist to manage flow and access for the health system. They were built as secondary systems to EHRs, often provide a minimum level of user functionality, and are behind the curve of changing user preferences for multichannel engagement.</p>
+      <p>The first real moves towards a companion layer are already here. Epic&#x27;s Emmie is the AI assistant inside Hello World, their patient communications platform<sup class="cite">2</sup> — the SMS, voice, and email engine health systems use to reach patients at scale. OpenAI launched ChatGPT Health in January and opened it to all U.S. adults in July<sup class="cite">3</sup>.</p>
+      <p>Both are useful. Both are also shaped by whose problem they were built to solve, and with Epic you can see it in what gets measured. The published outcomes for Hello World<sup class="cite">2</sup> are a thirty percent drop in no-shows, five thousand appointments rescheduled, thirty percent of balance notifications paid in full, forty staff hours saved a month. Every one is real. Every one is operational or financial. Not one is a health outcome.</p>
+      <p>That&#x27;s not a criticism of Epic. It&#x27;s a description of where the assistant was placed. Emmie lives inside the outreach machine, now with a conversational front end. It makes that machine work considerably better. It does not change the siloed approach to the outreach. ChatGPT Health comes at it from the other direction: a general assistant that now has your labs, with no relationship to your care team at all.</p>
+      <p>What I&#x27;m describing moves from reactive — use it when you need care — to relationship-first. An AI that advocates for the patient, helping them manage their own health, their own data, and their own coordination burden.</p>
+      <p>The person I picture most often is somebody in their fifties taking care of a parent, keeping up with their own screening, and trying to build decent habits for their kids. For a large share of the population, managing coordination for themselves and then for the people they love is genuinely overwhelming.</p>
+      <p>That&#x27;s a world of unmet need — understanding, answers, guidance, coordination — that healthcare and insurers keep out of provider channels out of necessity. We have a good sense of how large it is, because people are already asking somewhere else. OpenAI reported that 230 million people ask ChatGPT health and wellness questions every week<sup class="cite">4</sup>, close to a third of its weekly users. That demand didn&#x27;t appear when the tools did. It was always there. It just had nowhere to go.</p>
+      <p>We&#x27;ve been trained by scarcity. People self-ration on cost, on access, or on the sense that they shouldn&#x27;t bother anyone. There&#x27;s a whole category of questions that never get asked. What was my last A1c? I&#x27;m making dinner — what&#x27;s a good option for my numbers? Is there aluminum in vaccines, and are they safe for my kid? The questions we don&#x27;t want flooding our virtual channels are exactly the ones a trusted, well-bounded resource should handle, with clear escalation when a human is needed.</p>
+      <p>Getting to daily use takes four things: trust built through consistent accuracy, real work done on your behalf, a relationship that knows your life, and support for your curiosity rather than deflection of it. Those come first, and the order matters. Most visions start with clinical integration and assume the relationship follows. I think it runs the other way.</p>
+      <h2>What it takes to build one</h2>
+      <figure class="fig">
+<svg viewBox="-20 -10 940 400" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+
+
+
+<line x1="450" y1="58" x2="450" y2="376" stroke="var(--clock1)" stroke-width="1.6"/>
+<g stroke="var(--clock1)" stroke-width="0.6" opacity="0.3">
+  <line x1="445" y1="70" x2="455" y2="70"/><line x1="445" y1="100" x2="455" y2="100"/>
+  <line x1="445" y1="130" x2="455" y2="130"/><line x1="445" y1="160" x2="455" y2="160"/>
+  <line x1="445" y1="190" x2="455" y2="190"/><line x1="445" y1="220" x2="455" y2="220"/>
+  <line x1="445" y1="250" x2="455" y2="250"/><line x1="445" y1="280" x2="455" y2="280"/>
+  <line x1="445" y1="310" x2="455" y2="310"/><line x1="445" y1="340" x2="455" y2="340"/>
+</g>
+<text x="450" y="48" text-anchor="middle" class="mono" font-size="10" fill="var(--clock1)">THE MEMBRANE</text>
+
+<text x="0" y="16" class="mono" font-size="9.5" fill="var(--ink-3)">YOUR SIDE</text>
+<text x="876" y="16" text-anchor="end" class="mono" font-size="9.5" fill="var(--ink-3)">THE SYSTEMS</text>
+
+<!-- INBOUND -->
+<text x="0" y="88" class="mono" font-size="9" fill="var(--clock2)">INBOUND &#183; WHAT REACHES YOU</text>
+<g font-size="10.5" fill="var(--ink-2)" text-anchor="end">
+  <text x="872" y="82">Influenza campaign</text>
+  <text x="872" y="104">Mammography outreach</text>
+  <text x="872" y="126">Statin adherence call</text>
+  <text x="872" y="148">Colorectal screening</text>
+  <text x="872" y="170">Refill reminder</text>
+  <text x="872" y="192">Post-visit instructions</text>
+</g>
+<g fill="none" stroke="var(--clock2)" stroke-width="0.8" opacity="0.75">
+  <path d="M678,78 C600,78 540,112 456,134"/>
+  <path d="M678,100 C610,100 545,120 456,138"/>
+  <path d="M678,122 C620,122 550,130 456,142"/>
+  <path d="M678,144 C620,144 550,144 456,146"/>
+  <path d="M678,166 C620,166 550,158 456,150"/>
+  <path d="M678,188 C610,188 545,170 456,154"/>
+</g>
+<line x1="444" y1="144" x2="150" y2="144" stroke="var(--clock2)" stroke-width="1.8"/>
+<path d="M162,138 L150,144 L162,150" fill="none" stroke="var(--clock2)" stroke-width="1.8"/>
+<text x="300" y="132" text-anchor="middle" class="serif" font-size="12.5" fill="var(--ink)">one conversation</text>
+<text x="300" y="164" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">consolidated, on your cadence,</text>
+<text x="300" y="179" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">in a voice you already know</text>
+
+<line x1="0" y1="216" x2="876" y2="216" stroke="var(--rule)" stroke-width="1"/>
+
+<!-- OUTBOUND -->
+<text x="0" y="244" class="mono" font-size="9" fill="var(--clock3)">OUTBOUND &#183; WHAT YOU ASK FOR</text>
+<text x="0" y="280" class="serif" font-size="13.5" fill="var(--ink)">&#8220;Why does my knee still hurt,</text>
+<text x="0" y="298" class="serif" font-size="13.5" fill="var(--ink)">and what will the MRI cost me?&#8221;</text>
+<line x1="250" y1="318" x2="444" y2="318" stroke="var(--clock3)" stroke-width="1.8"/>
+<path d="M432,312 L444,318 L432,324" fill="none" stroke="var(--clock3)" stroke-width="1.8"/>
+<text x="347" y="310" text-anchor="middle" font-size="10" fill="var(--ink-2)">packaged with context</text>
+<g fill="none" stroke="var(--clock3)" stroke-width="0.8" opacity="0.75">
+  <path d="M456,314 C540,308 600,284 680,278"/>
+  <path d="M456,316 C545,314 600,306 680,300"/>
+  <path d="M456,318 C550,318 600,322 680,322"/>
+  <path d="M456,320 C545,324 600,340 680,344"/>
+  <path d="M456,322 C540,330 600,360 680,366"/>
+</g>
+<g font-size="10.5" fill="var(--ink-2)">
+  <text x="694" y="282">Prior visit notes &#183; EHR</text>
+  <text x="694" y="304">Imaging order status</text>
+  <text x="694" y="326">Benefits &amp; cost estimate</text>
+  <text x="694" y="348">Scheduling</text>
+  <text x="694" y="370">Escalation to the care team</text>
+</g>
+<text x="347" y="340" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">the companion negotiates</text>
+<text x="347" y="355" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">with each one on your behalf</text>
+</svg>
+
+        <figcaption><span class="fignum">Figure 2</span> The membrane turns workstreams into a conversation.</figcaption>
+        <p class="figsrc">Inbound, many separate campaigns arrive and leave as one conversation. Outbound, one request fans into every system that has to answer it.</p>
+      </figure>
+      <div class="tablewrap">
+        <div class="tablehead">The nine functions</div>
+        <table class="fn-table">
+          <thead><tr><th>Function</th><th>What it is</th><th>What it does</th></tr></thead>
+          <tbody>
+          <tr><td class="fn">Model gateway</td><td class="is">A single entry point for every request</td><td class="does">Routes simple triage to small fast models and complex reasoning to large ones. Manages token budget and retention, which is what makes daily use affordable.</td></tr>
+          <tr><td class="fn">Safety layer</td><td class="is">An independent monitor running beside the conversation, never inside it</td><td class="does">Classifies risk, checks context flags, watches for crisis language in text and speech. Keeps the conversation warm while monitoring stays conservative.</td></tr>
+          <tr><td class="fn">Knowledge and grounding</td><td class="is">Retrieval over licensed, validated clinical sources</td><td class="does">Answers from triage protocols, drug interactions, preventive schedules and guidelines, with a citation on every claim. The most mature component here.</td></tr>
+          <tr><td class="fn">Companion engine</td><td class="is">The memory and relationship layer</td><td class="does">Holds the conversation, your history, your trajectory, your cadence and preferences. Knowing when not to interrupt is part of the job.</td></tr>
+          <tr><td class="fn">Agent runtime</td><td class="is">Scoped task agents with an explicit tool registry</td><td class="does">Runs benefits checks, scheduling, adherence follow-up, triage. Each has its own identity and permissions, so nothing reaches further than its task requires.</td></tr>
+          <tr><td class="fn">The membrane</td><td class="is">The bi-directional boundary, on the patient&#x27;s side</td><td class="does">Consolidates what the health system sends into one conversation, and carries your requests outward. This is what de-fragments the outreach.</td></tr>
+          <tr><td class="fn">Handoff builder</td><td class="is">The packager for anything crossing the boundary</td><td class="does">Assembles the context that travels with a chart request, a wearable upload, or an escalation — so the receiving system gets what it needs and nothing more.</td></tr>
+          <tr><td class="fn">Identity, consent, audit</td><td class="is">The permission layer</td><td class="does">Knows what you are willing to share, releases only the minimum needed, and keeps a discoverable record of every exchange.</td></tr>
+          <tr><td class="fn">Data</td><td class="is">Your record, wherever you choose to keep it</td><td class="does">Health records, social context, preferences, history. On your device or in storage you control. What gets shared is up to you.</td></tr>
+          </tbody>
+        </table>
+        <p class="figsrc">Functions rather than products. Any of these could be built several ways, and a few exist already. What does not exist is the assembly.</p>
+      </div>
+      <p>These are functions, not products. Any of them could be built several ways and a few exist already. What doesn&#x27;t exist is the assembly.</p>
+      <p>The one worth pressure testing is the membrane — the bi-directional boundary that sits on the patient&#x27;s side. It takes in what the health system sends and carries out what the person needs.</p>
+      <p>That&#x27;s the answer to the problem I opened with. Today four programs send four messages on four schedules and none of them know the others exist. With a membrane, that outreach arrives at your companion first, which knows what else came this week, what you already did, and when you&#x27;re willing to be interrupted. The health system still sends. You stop being the integration point.</p>
+      <p>And underneath everything sits identity, consent, and data. That&#x27;s where the architecture becomes a position. If those sit inside the health system, what you&#x27;ve built is a better portal. If they sit with the person, you&#x27;ve built an advocate. That decision gets made early and quietly, and it determines everything after it.</p>
+      <h2>Why it has to be relational</h2>
+      <p>The evidence for relationship keeps growing. Google&#x27;s AMIE, in a randomized study of simulated video consultations<sup class="cite">5</sup>, scored on par with primary care physicians on diagnostic accuracy and management — and was rated favorably against them on empathy, rapport, and confidence in care. How we make patients feel isn&#x27;t adjacent to the medicine. For adherence, for disclosure, for whether someone comes back at all, it may matter as much as what we prescribe.</p>
+      <p>Set that against what we currently offer. You call, press through a menu, talk to two or three people, get bounced between departments, and still don&#x27;t get your answer. Or you send a secure message, then a second one to a different department, because primary care and specialty care don&#x27;t share a thread.</p>
+      <p>Now imagine that instead of gathering the energy to navigate that, you just talk to your companion. It&#x27;s on demand. You can talk as long as you want. It has the same voice every time, never gets tired, never runs out of time. It knows your name. It knows you went to the doctor last week. It knows you have a dog, and it knows about your kids.</p>
+      <p>It isn&#x27;t your front door to the health system. It&#x27;s your problem solver. It takes what you need and negotiates with the system on your behalf. The relationship reduces the energy it takes to start a conversation, and then the effort it takes to finish the task. Two different costs, and we&#x27;ve never really counted either.</p>
+      <p>Trust also unlocks something practical. People are far more willing to connect a wearable or accept autonomous check-ins if they feel they have control of their information. Trust is the precondition for the data, not the other way around.</p>
+      <p>The clearest example isn&#x27;t in the United States. South Korea is aging faster than any country on earth — the share over sixty-five doubled in about fifteen years to more than a fifth of the population, and there aren&#x27;t enough doctors, social workers, or family caregivers to keep up. All three shortages I described in the aperture piece, already arrived.</p>
+      <p>What they built is a care-call service from Naver Cloud called Talking Buddy<sup class="cite">6</sup>, now used by cities and counties to check on tens of thousands of seniors living alone. It began during the pandemic as a single scripted question about fever. Welfare officials came back asking for something that could actually converse, because there were too many isolated people and not enough hands.</p>
+      <p>In late 2024 it called a seventy-seven-year-old woman outside Seoul who had woken in severe pain and could barely speak. She managed a few words and hung up. The system flagged it and alerted a social worker. She was in surgery for an acute hernia within hours.</p>
+      <p>Two details matter more than the story. The system remembered — on a later call it asked about her recovery. And social workers monitor the interactions and step in, because nuance and background noise still defeat it. That&#x27;s the architecture working as designed: a relational agent holding the thread, with a human on the other end of the escalation.</p>
+      <p>That&#x27;s the shape of what I&#x27;d most want here. Post-discharge check-ins. The days after a hospitalization when someone is home, unwell, and suddenly responsible for everything that was being managed for them the day before.</p>
+      <h2>The real constraint</h2>
+      <p>Right now our health records belong to health systems. Patients are siloed from their own information, across multiple systems, behind multiple logins, in fine-print PDFs, in language written for someone else.</p>
+      <p>There&#x27;s a real opportunity in a companion that manages what it can of that within appropriate safety limits, then gives you a warm handoff to your care team. It carries the coordination and builds trust over time. I don&#x27;t think I can overstate the value of reducing the energy it takes just to get something done. Built well, it internalizes your goals and helps you work toward them, which is what makes hard, long-term behavior change possible at all.</p>
+      <p>Not all of these components have been researched, tested, and built. That isn&#x27;t an argument against building. John Gall&#x27;s observation applies: a complex system that works is invariably found to have evolved from a simple system that worked, and one designed whole from scratch never does<sup class="cite">7</sup>. So it&#x27;s an argument for starting now — small, on specific use cases, assembling the components, the interfaces, the clinical libraries, and the evaluation methods, one working piece at a time.</p>
+      <figure class="fig">
+<svg viewBox="-30 -8 960 316" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+  <!-- axis -->
+  <line x1="0" y1="188" x2="760" y2="188" stroke="var(--rule)" stroke-width="1"/>
+  <text x="0" y="210" class="mono" font-size="9" fill="var(--ink-3)">PEER-REVIEWED, WORKING</text>
+  <text x="760" y="210" text-anchor="end" class="mono" font-size="9" fill="var(--ink-3)">NOT YET BUILT</text>
+
+  <!-- ticks + components -->
+  <g stroke="var(--rule)" stroke-width="0.8">
+    <line x1="80" y1="182" x2="80" y2="194"/>
+    <line x1="215" y1="182" x2="215" y2="194"/>
+    <line x1="380" y1="182" x2="380" y2="194"/>
+    <line x1="545" y1="182" x2="545" y2="194"/>
+    <line x1="700" y1="182" x2="700" y2="194"/>
+  </g>
+
+  <g>
+    <line x1="80" y1="182" x2="80" y2="130" stroke="var(--clock1)" stroke-width="0.8"/>
+    <circle cx="80" cy="126" r="3" fill="var(--clock1)"/>
+    <text x="80" y="112" text-anchor="middle" class="serif" font-size="13" fill="var(--ink)">Clinical retrieval</text>
+    <text x="80" y="96" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">8% → 0% hallucination</text>
+  </g>
+  <g>
+    <line x1="215" y1="194" x2="215" y2="246" stroke="var(--rule)" stroke-width="0.8"/>
+    <circle cx="215" cy="250" r="3" fill="var(--ink-2)"/>
+    <text x="215" y="270" text-anchor="middle" class="serif" font-size="13" fill="var(--ink)">Interoperability</text>
+    <text x="215" y="286" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">standards exist, governance doesn't</text>
+  </g>
+  <g>
+    <line x1="380" y1="182" x2="380" y2="130" stroke="var(--rule)" stroke-width="0.8"/>
+    <circle cx="380" cy="126" r="3" fill="var(--ink-2)"/>
+    <text x="380" y="112" text-anchor="middle" class="serif" font-size="13" fill="var(--ink)">Memory and ontology</text>
+    <text x="380" y="96" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">moving fastest, no consensus schema</text>
+  </g>
+  <g>
+    <line x1="545" y1="194" x2="545" y2="246" stroke="var(--clock3)" stroke-width="0.8"/>
+    <circle cx="545" cy="250" r="3" fill="var(--clock3)"/>
+    <text x="545" y="270" text-anchor="middle" class="serif" font-size="13" fill="var(--clock3)">Safety and escalation</text>
+    <text x="545" y="286" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">least solved, most consequential</text>
+  </g>
+  <g>
+    <line x1="700" y1="182" x2="700" y2="130" stroke="var(--rule)" stroke-width="0.8"/>
+    <circle cx="700" cy="126" r="3" fill="var(--ink-2)"/>
+    <text x="700" y="112" text-anchor="middle" class="serif" font-size="13" fill="var(--ink)">Orchestration</text>
+    <text x="700" y="96" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">nobody has assembled it</text>
+  </g>
+
+  </svg>
+        <figcaption><span class="fignum">Figure 3</span> The components are arriving faster than our ability to evaluate effectiveness.</figcaption>
+        <p class="figsrc">Maturity varies sharply across the stack. Placement reflects the state of published evidence, not the difficulty of the engineering.</p>
+      </figure>
+      <p>That last one is the real constraint, and it deserves a number. As these systems have grown more capable, we are still struggling to design evaluation frameworks: in fact, the share of studies conducting clinical efficacy testing fell from about half for rule-based chatbots to roughly one in six for those built on language models<sup class="cite">8</sup>. Across more than a hundred patient-facing studies, evaluation has been driven largely by user-experience measures rather than clinical outcomes<sup class="cite">9</sup>. That&#x27;s not a reason to wait. It&#x27;s the reason to define what good looks like now, while the answers are still being set.</p>
+      <p>Last, and most importantly, adoption of AI based tools by care teams and patients will take time.  A PHC won&#x27;t be a fit for many patients. For the right ones, it could be a game changer.</p>
+      <p>As I say in all of these: this is one vision for how AI could change health for the better, and specifically how we might chip away at the unmet need in care coordination that nearly all of us struggle with every time we need help with our own care or the care of someone we love. I&#x27;d like to hear which parts resonate — and more than that, your own ideas about how emerging technology can reduce the burden of coordination and preventive health.</p>
+    </div>
+
+    <div class="sources">
+      <h3>References</h3>
+      <ol class="reflist">
+        <li><span class="rn">1</span> Johnson S. Where Good Ideas Come From: The Natural History of Innovation. Riverhead Books, 2010.</li>
+        <li><span class="rn">2</span> Epic Systems. Hello World product documentation, epic.com. Published customer outcomes include a 30% reduction in no-shows (Catholic Health, Long Island); 5,000+ appointments rescheduled via conversational AI over four months (Ochsner Health); 30% of balance notifications paid in full via interactive SMS (Ohio State Wexner Medical Center); and approximately 40 staff hours saved monthly with ~200 additional appointments filled (Rush University System for Health).</li>
+        <li><span class="rn">3</span> OpenAI. ChatGPT Health. Launched January 2026; general availability to U.S. adults July 2026.</li>
+        <li><span class="rn">4</span> OpenAI usage reporting, 2026. Approximately 230 million people ask health and wellness questions weekly, close to one-third of weekly users.</li>
+        <li><span class="rn">5</span> Google Research. Advancing AMIE towards expert-level audio-visual clinical consultations, August 2026. Randomized study of 100 scenarios and 300 consultations against 30 board-certified primary care physicians; AMIE rated on par for diagnostic accuracy and management, and favorably for empathy, rapport, and confidence in care. Simulated consultations with trained patient actors.</li>
+        <li><span class="rn">6</span> Naver Cloud Talking Buddy care-call service; reporting via The Japan Times, April 2026. Deployed by municipalities across South Korea, checking on tens of thousands of seniors living alone.</li>
+        <li><span class="rn">7</span> Gall J. Systemantics: How Systems Really Work and How They Fail. Quadrangle, 1975.</li>
+        <li><span class="rn">8</span> Hua Y, et al. Analysis of clinical efficacy testing across chatbot generations, 2025.</li>
+        <li><span class="rn">9</span> Gaus O, et al. READI framework for evaluating client-facing conversational agents, 2025. Review of 114 studies.</li>
+      </ol>
+      <h3 style="margin-top:26px">Additional sources informing this piece</h3>
+      <ul class="reflist extra">
+        <li>Wada A, et al. Retrieval-augmented generation and hallucination in a locally deployed clinical LLM. npj Digital Medicine, 2025. Hallucination rate reduced from 8% to 0%.</li>
+        <li>Suicide- and crisis-risk detection in deployed mental-health chatbots. medRxiv, January 2026. Risk detection as a module operating independently of the conversational model.</li>
+        <li>Pham HH, et al. Care Patterns in Medicare and Their Implications for Pay for Performance. New England Journal of Medicine, 2007.</li>
+        <li>Kern LM, et al. Care fragmentation and coordination burden. Journal of General Internal Medicine, 2019.</li>
+        <li>Centers for Medicare &amp; Medicaid Services, Innovation Center, 2022. Care fragmentation among Medicare beneficiaries.</li>
+      </ul>
+    </div>
+
+    <a class="back-link" href="/essays/">← All essays</a>
+  </article>
+
+  <footer class="foot">
+    <div>
+      <div>Ben Wilson · What Health Becomes</div>
+      <p class="disclaimer">Everything here is my own work and my own opinion. It does not represent the views of my employer, and contains no employer information of any kind.</p>
+    </div>
+    <div>
+      <a href="/essays/">Essays</a> ·
+      <a href="/concepts/">Concepts</a> ·
+      <a href="/reading/">Reading</a>
+        <a href="/about/">About</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

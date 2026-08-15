@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Clocks Model — Trajectory-Based Care</title>
+<meta name="description" content="A four-layer architecture for reorganizing healthcare around longitudinal health trajectories, enabled by AI co-intelligence, remote monitoring, and asynchronous care.">
+<meta name="author" content="Ben Wilson">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2235;
+  --border: #1e293b;
+  --border-light: #2a3a52;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --clock1: #22d3ee;
+  --clock1-bg: rgba(34,211,238,0.08);
+  --clock1-border: rgba(34,211,238,0.25);
+  --clock2: #a78bfa;
+  --clock2-bg: rgba(167,139,250,0.08);
+  --clock2-border: rgba(167,139,250,0.25);
+  --clock3: #f97316;
+  --clock3-bg: rgba(249,115,22,0.08);
+  --clock3-border: rgba(249,115,22,0.25);
+  --layer4: #10b981;
+  --layer4-bg: rgba(16,185,129,0.08);
+  --layer4-border: rgba(16,185,129,0.25);
+  --accent-warm: #fbbf24;
+  --accent-rose: #fb7185;
+  --accent-blue: #60a5fa;
+  --patient: #34d399;
+  --ai: #c084fc;
+  --team: #fbbf24;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: auto;
+  min-height: 100vh;
+}
+
+.container {
+  min-width: 2400px;
+  max-width: 3200px;
+  padding: 40px 60px 60px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 40px;
+}
+
+.header-left h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.header-left h1 span {
+  background: linear-gradient(135deg, var(--clock1), var(--clock2), var(--clock3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-left .subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.legend {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* LIFE STAGE TIMELINE */
+.timeline-section {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.life-stages {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0;
+  position: relative;
+}
+
+.life-stage {
+  padding: 14px 20px;
+  border-bottom: 3px solid var(--border);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.life-stage::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: var(--border-light);
+}
+
+.life-stage:last-child::after { display: none; }
+
+.life-stage:nth-child(1) { border-bottom-color: var(--clock1); }
+.life-stage:nth-child(2) { border-bottom-color: color-mix(in srgb, var(--clock1) 60%, var(--clock2)); }
+.life-stage:nth-child(3) { border-bottom-color: var(--clock2); }
+.life-stage:nth-child(4) { border-bottom-color: color-mix(in srgb, var(--clock2) 50%, var(--clock3)); }
+.life-stage:nth-child(5) { border-bottom-color: var(--accent-rose); }
+
+.life-stage-label {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.life-stage-years {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.life-stage-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+/* TRAJECTORY VISUALIZATION */
+.trajectory-vis {
+  position: relative;
+  height: 100px;
+  margin: 0 0 6px;
+  overflow: visible;
+}
+
+.trajectory-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* CLOCK ROWS */
+.clocks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.clock-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.clock-label {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.clock-label::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+}
+
+.clock1-row .clock-label { background: var(--clock1-bg); }
+.clock1-row .clock-label::after { background: var(--clock1-border); }
+.clock2-row .clock-label { background: var(--clock2-bg); }
+.clock2-row .clock-label::after { background: var(--clock2-border); }
+.clock3-row .clock-label { background: var(--clock3-bg); }
+.clock3-row .clock-label::after { background: var(--clock3-border); }
+.layer4-row .clock-label { background: var(--layer4-bg); }
+.layer4-row .clock-label::after { background: var(--layer4-border); }
+
+.clock-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  margin-bottom: 2px;
+}
+
+.clock1-row .clock-name { color: var(--clock1); }
+.clock2-row .clock-name { color: var(--clock2); }
+.clock3-row .clock-name { color: var(--clock3); }
+.layer4-row .clock-name { color: var(--layer4); }
+
+.clock-horizon {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.clock-desc {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.clock-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0;
+  background: var(--bg-card);
+}
+
+.clock-cell {
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background 0.2s;
+}
+
+.clock-cell:last-child { border-right: none; }
+.clock-cell:hover { background: var(--bg-card-hover); }
+
+.cell-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cell-item {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  padding-left: 12px;
+  position: relative;
+}
+
+.cell-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.clock1-row .cell-item::before { background: var(--clock1); opacity: 0.6; }
+.clock2-row .cell-item::before { background: var(--clock2); opacity: 0.6; }
+.clock3-row .cell-item::before { background: var(--clock3); opacity: 0.6; }
+.layer4-row .cell-item::before { background: var(--layer4); opacity: 0.6; }
+
+.cell-highlight {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ROLE BADGES */
+.cell-roles {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.role-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.role-ai { background: rgba(192,132,252,0.15); color: var(--ai); border: 1px solid rgba(192,132,252,0.25); }
+.role-patient { background: rgba(52,211,153,0.15); color: var(--patient); border: 1px solid rgba(52,211,153,0.25); }
+.role-team { background: rgba(251,191,36,0.15); color: var(--team); border: 1px solid rgba(251,191,36,0.25); }
+
+/* CROSS-CLOCK FLOWS */
+.flows-section {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.flow-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.flow-card.roles-card::before { background: linear-gradient(90deg, var(--ai), var(--team), var(--patient)); }
+.flow-card.eol-card::before { background: linear-gradient(90deg, var(--accent-rose), var(--clock2)); }
+.flow-card.compete-card::before { background: linear-gradient(90deg, var(--accent-warm), var(--clock1)); }
+
+.flow-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.flow-content {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.flow-role {
+  text-align: center;
+}
+
+.flow-role-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+  font-size: 16px;
+}
+
+.flow-role-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.flow-role-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.eol-stages {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.eol-stage {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.eol-stage-name {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.eol-stage-desc {
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.compete-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.compete-item:last-child { margin-bottom: 0; }
+
+.compete-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.compete-text {
+  flex: 1;
+}
+
+.compete-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.compete-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* CROSS CLOCK FLOW ARROWS */
+.arrow-section {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  margin: 4px 0;
+}
+
+.arrow-label {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.arrow-label span {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.arrow-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.flow-arrow {
+  font-size: 10px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+
+.flow-arrow .arr { font-size: 13px; }
+
+.flow-arrow.up .arr { color: var(--clock1); }
+.flow-arrow.down .arr { color: var(--clock3); }
+
+/* Attribution footer */
+.attribution {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attribution .brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.attribution .byline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.clock-row { animation: fadeIn 0.5s ease-out both; }
+.clock-row:nth-child(1) { animation-delay: 0.1s; }
+.clock-row:nth-child(2) { animation-delay: 0.2s; }
+.clock-row:nth-child(3) { animation-delay: 0.3s; }
+.clock-row:nth-child(4) { animation-delay: 0.4s; }
+
+.flow-card { animation: fadeIn 0.5s ease-out both; }
+.flow-card:nth-child(1) { animation-delay: 0.5s; }
+.flow-card:nth-child(2) { animation-delay: 0.6s; }
+.flow-card:nth-child(3) { animation-delay: 0.7s; }
+
+/* Scroll hint */
+.scroll-hint {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 100;
+  opacity: 0.9;
+}
+
+.scroll-hint .arrow-anim {
+  animation: scrollPulse 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,14,26,0.94);
+  border-bottom:1px solid #1e293b;padding:11px 22px;display:flex;justify-content:space-between;align-items:center;
+  font-family:'DM Sans',sans-serif">
+  <a href="/essays/the-three-clocks/" style="color:#94a3b8;text-decoration:none;font-size:12.5px">&#8592; Back to The Three Clocks</a>
+  <span style="font-family:'DM Serif Display',serif;font-size:14px;color:#e2e8f0">What Health <em style="color:#22d3ee">Becomes</em></span>
+</div>
+<div style="height:44px"></div>
+
+<div class="scroll-hint">
+  <span class="arrow-anim">→</span> Scroll horizontally to explore the full model
+</div>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>The <span>Three Clocks</span> Model:<br>Trajectory-Based Care Across a Lifetime</h1>
+    <div class="subtitle">A four-layer architecture for reorganizing American healthcare around longitudinal health trajectories, 
+    enabled by AI co-intelligence, remote monitoring, and asynchronous care — viewed through the lens of a single patient's life.</div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--clock1)"></div>Clock 1 · Identity</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--clock2)"></div>Clock 2 · Stability</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--clock3)"></div>Clock 3 · Action</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--layer4)"></div>Layer 4 · Learning</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--ai)"></div>AI</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--team)"></div>Care Team</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--patient)"></div>Patient</div>
+  </div>
+</div>
+
+<!-- LIFE STAGES -->
+<div class="timeline-section">
+  <div class="life-stages">
+    <div class="life-stage">
+      <div class="life-stage-label">Foundation</div>
+      <div class="life-stage-years">0 — 25 years</div>
+      <div class="life-stage-desc">Genetics, early life, family history, social determinants establish baseline trajectory</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-label">Active Health</div>
+      <div class="life-stage-years">25 — 50 years</div>
+      <div class="life-stage-desc">Prevention, risk detection, lifestyle choices, behavioral patterns shape long-term trajectory</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-label">Chronic Onset</div>
+      <div class="life-stage-years">50 — 65 years</div>
+      <div class="life-stage-desc">Chronic conditions emerge, trajectory management intensifies, care coordination grows</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-label">Medicare Transition</div>
+      <div class="life-stage-years">65 — 80 years</div>
+      <div class="life-stage-desc">Multi-condition management, goal alignment, functional preservation, caregiver integration</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-label">End-of-Life Trajectory</div>
+      <div class="life-stage-years">80+ years</div>
+      <div class="life-stage-desc">Quality-focused care, goal realignment, comfort, dignity, progressive de-escalation</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAJECTORY VISUALIZATION -->
+<div class="trajectory-vis">
+  <svg class="trajectory-svg" viewBox="0 0 2200 100" preserveAspectRatio="none">
+    <!-- Optimal trajectory -->
+    <path d="M 0,70 C 150,65 300,50 440,40 C 550,33 700,25 880,22 C 1000,20 1200,18 1320,20 C 1450,22 1600,30 1760,45 C 1850,55 1950,65 2200,80"
+      stroke="var(--patient)" fill="none" stroke-width="2.5" stroke-dasharray="6,4" opacity="0.4"/>
+    <!-- Actual trajectory with events -->
+    <path d="M 0,70 C 150,65 300,52 440,42 C 500,38 550,36 600,38 C 650,44 680,50 720,46 C 800,38 900,30 1000,28 C 1050,27 1100,30 1150,38 C 1180,44 1200,50 1220,48 C 1260,42 1300,35 1400,32 C 1500,30 1550,34 1600,42 C 1650,50 1700,55 1760,52 C 1820,50 1880,55 1950,65 C 2020,72 2100,78 2200,82"
+      stroke="url(#trajGrad)" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+    <defs>
+      <linearGradient id="trajGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--clock1)"/>
+        <stop offset="40%" stop-color="var(--clock2)"/>
+        <stop offset="70%" stop-color="var(--clock3)"/>
+        <stop offset="100%" stop-color="var(--accent-rose)"/>
+      </linearGradient>
+    </defs>
+    <!-- Life events -->
+    <circle cx="680" cy="50" r="5" fill="var(--clock3)" opacity="0.8"/>
+    <text x="680" y="72" text-anchor="middle" fill="var(--text-dim)" font-size="9" font-family="DM Sans">Injury</text>
+    
+    <circle cx="1000" cy="28" r="5" fill="var(--clock2)" opacity="0.8"/>
+    <text x="1000" y="16" text-anchor="middle" fill="var(--text-dim)" font-size="9" font-family="DM Sans">DM2 Dx</text>
+    
+    <circle cx="1150" cy="38" r="5" fill="var(--clock3)" opacity="0.8"/>
+    <text x="1150" y="58" text-anchor="middle" fill="var(--text-dim)" font-size="9" font-family="DM Sans">Hospitalization</text>
+    
+    <circle cx="1400" cy="32" r="5" fill="var(--clock2)" opacity="0.8"/>
+    <text x="1400" y="20" text-anchor="middle" fill="var(--text-dim)" font-size="9" font-family="DM Sans">CHF Dx</text>
+    
+    <circle cx="1600" cy="42" r="5" fill="var(--clock1)" opacity="0.8"/>
+    <text x="1600" y="62" text-anchor="middle" fill="var(--text-dim)" font-size="9" font-family="DM Sans">Goal Reset</text>
+    
+    <circle cx="1820" cy="50" r="5" fill="var(--accent-rose)" opacity="0.8"/>
+    <text x="1820" y="40" text-anchor="middle" fill="var(--text-dim)" font-size="9" font-family="DM Sans">Comfort Focus</text>
+
+    <!-- Labels -->
+    <text x="20" y="14" fill="var(--text-dim)" font-size="9" font-family="JetBrains Mono" letter-spacing="1">PATIENT TRAJECTORY</text>
+    <text x="2060" y="96" fill="var(--text-dim)" font-size="8" font-family="DM Sans" opacity="0.6">── optimal  ── actual</text>
+  </svg>
+</div>
+
+<!-- CLOCK ROWS -->
+<div class="clocks-grid">
+
+<!-- CLOCK 1 -->
+<div class="clock-row clock1-row">
+  <div class="clock-label">
+    <div class="clock-horizon">YEARS → LIFETIME</div>
+    <div class="clock-name">Clock 1</div>
+    <div class="clock-desc">Longitudinal Health Identity — who this person is, where they're headed, what matters to them</div>
+  </div>
+  <div class="clock-content">
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Genetics & epigenetics</div>
+        <div class="cell-item">Family history encoding</div>
+        <div class="cell-item">ACEs & early life factors</div>
+        <div class="cell-item">Demographics, SDOH baseline</div>
+        <div class="cell-item">Initial risk envelope</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Synthesizes</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Behavioral patterns form</div>
+        <div class="cell-item">Preventive care status</div>
+        <div class="cell-item">Wearable & consumer data</div>
+        <div class="cell-item">Patient life goals captured</div>
+        <div class="cell-item">Risk trajectory calibrates</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Maintains</span>
+        <span class="role-badge role-patient">Patient Shapes</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Multi-domain trajectory active</div>
+        <div class="cell-item">Disease staging encoded</div>
+        <div class="cell-item">Treatment response history</div>
+        <div class="cell-item">Episode residue integrated</div>
+        <div class="cell-item">Constraint model deepens</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Models</span>
+        <span class="role-badge role-team">Clinician Authors</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Goal realignment cycles</div>
+        <div class="cell-item">Functional trajectory trending</div>
+        <div class="cell-item">Advance directives active</div>
+        <div class="cell-item">Caregiver context encoded</div>
+        <div class="cell-item">End-of-life domain initiates</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-team">Clinician + Patient</span>
+        <span class="role-badge role-ai">AI Projects</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Comfort-focused goals primary</div>
+        <div class="cell-item">POLST / directives govern</div>
+        <div class="cell-item">Quality-of-life optimization</div>
+        <div class="cell-item">Legacy & dignity priorities</div>
+        <div class="cell-item">Trajectory completion context</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-patient">Patient + Family</span>
+        <span class="role-badge role-team">Team Aligns</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW ARROWS 1↔2 -->
+<div class="arrow-section">
+  <div class="arrow-label"><span>Information Flows</span></div>
+  <div class="arrow-content">
+    <div class="flow-arrow down"><span class="arr">↓</span> Baselines, thresholds, goal context, risk weights</div>
+    <div class="flow-arrow up"><span class="arr">↑</span> Episode residue, treatment response, social destabilization, trajectory updates</div>
+  </div>
+</div>
+
+<!-- CLOCK 2 -->
+<div class="clock-row clock2-row">
+  <div class="clock-label">
+    <div class="clock-horizon">DAYS → MONTHS</div>
+    <div class="clock-name">Clock 2</div>
+    <div class="clock-desc">Destabilization Management — chronic care, extended episodes, coordination, drift detection</div>
+  </div>
+  <div class="clock-content">
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">Pediatric well-child protocols</div>
+        <div class="cell-item">Vaccination schedules</div>
+        <div class="cell-item">Developmental monitoring</div>
+        <div class="cell-item" style="color:var(--text-dim);font-style:italic">Low intensity — mostly preventive</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-team">Team Leads</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Screening & early detection</div>
+        <div class="cell-item">Behavioral drift monitoring</div>
+        <div class="cell-item">Pregnancy / surgical episodes</div>
+        <div class="cell-item">RPM for emerging risk</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Monitors</span>
+        <span class="role-badge role-team">Team Acts</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Chronic condition mgmt active</div>
+        <div class="cell-item">Protocol-driven DM2, HTN care</div>
+        <div class="cell-item">Hospitalization shepherding</div>
+        <div class="cell-item">Multi-provider coordination</div>
+        <div class="cell-item">Patient off coordination duty</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI + Protocols</span>
+        <span class="role-badge role-team">Clinician Exceptions</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Multi-condition orchestration</div>
+        <div class="cell-item">Transition management (hospital → home)</div>
+        <div class="cell-item">Caregiver support & training</div>
+        <div class="cell-item">Objective shifts: function > numbers</div>
+        <div class="cell-item">De-escalation protocols engage</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Orchestrates</span>
+        <span class="role-badge role-team">Team + Caregiver</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Palliative trajectory mgmt</div>
+        <div class="cell-item">Symptom-focused protocols</div>
+        <div class="cell-item">Hospice coordination</div>
+        <div class="cell-item">Family support systems</div>
+        <div class="cell-item">Aggressive Tx de-escalated</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-team">Team + Family</span>
+        <span class="role-badge role-patient">Patient Goals Govern</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW ARROWS 2↔3 -->
+<div class="arrow-section">
+  <div class="arrow-label"><span>Information Flows</span></div>
+  <div class="arrow-content">
+    <div class="flow-arrow down"><span class="arr">↓</span> Escalation signals, urgency context, pre-positioned information</div>
+    <div class="flow-arrow up"><span class="arr">↑</span> Discharge triggers, new diagnoses, care gaps, coordination needs</div>
+  </div>
+</div>
+
+<!-- CLOCK 3 -->
+<div class="clock-row clock3-row">
+  <div class="clock-label">
+    <div class="clock-horizon">MINUTES → DAYS</div>
+    <div class="clock-name">Clock 3</div>
+    <div class="clock-desc">Acute & Episodic Care — immediate needs, triage, clinical decisions, reactive coordination</div>
+  </div>
+  <div class="clock-content">
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">Acute illness (ear infections, etc.)</div>
+        <div class="cell-item">Injury management</div>
+        <div class="cell-item">Immunization reactions</div>
+        <div class="cell-item" style="color:var(--text-dim);font-style:italic">Episodic, visit-driven</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-team">Clinician Decides</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">Urgent care, sick visits</div>
+        <div class="cell-item">Async e-visits for low-acuity</div>
+        <div class="cell-item">Triage & channel routing</div>
+        <div class="cell-item">Context from Clock 1 begins</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Triages</span>
+        <span class="role-badge role-team">Clinician Treats</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Context-rich acute care</div>
+        <div class="cell-item">Clock 1 informs every encounter</div>
+        <div class="cell-item">Multi-channel delivery active</div>
+        <div class="cell-item">ED visits with trajectory context</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Prepares</span>
+        <span class="role-badge role-team">Clinician Judges</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Goal-informed acute decisions</div>
+        <div class="cell-item">Directives shape ED disposition</div>
+        <div class="cell-item">Specialist consults with context</div>
+        <div class="cell-item">Falls, decompensation episodes</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-team">Clinician + Goals</span>
+        <span class="role-badge role-ai">AI Synthesizes</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Comfort-aligned acute care</div>
+        <div class="cell-item">Goals prevent unwanted Tx</div>
+        <div class="cell-item">Symptom crisis management</div>
+        <div class="cell-item">Dignity-preserving response</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-team">Team Honors Goals</span>
+        <span class="role-badge role-patient">Patient Autonomy</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYER 4 -->
+<div class="clock-row layer4-row" style="margin-top:6px;">
+  <div class="clock-label">
+    <div class="clock-horizon">CONTINUOUS</div>
+    <div class="clock-name">Layer 4</div>
+    <div class="clock-desc">Learning & Governance — outcomes measurement, algorithm calibration, equity, AI governance</div>
+  </div>
+  <div class="clock-content">
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">Population baseline data</div>
+        <div class="cell-item">Cohort trajectory patterns</div>
+        <div class="cell-item">Equity baseline metrics</div>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">Prevention effectiveness</div>
+        <div class="cell-item">Risk model calibration</div>
+        <div class="cell-item">Early detection accuracy</div>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item cell-highlight">Full learning loop active</div>
+        <div class="cell-item">Trajectory outcomes by cohort</div>
+        <div class="cell-item">Algorithm performance monitoring</div>
+        <div class="cell-item">Equity-disaggregated metrics</div>
+      </div>
+      <div class="cell-roles">
+        <span class="role-badge role-ai">AI Learns</span>
+        <span class="role-badge role-team">Governance Oversees</span>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">End-of-life quality metrics</div>
+        <div class="cell-item">Goal-concordance measurement</div>
+        <div class="cell-item">Spending-per-trajectory analysis</div>
+      </div>
+    </div>
+    <div class="clock-cell">
+      <div class="cell-items">
+        <div class="cell-item">Comfort care outcomes</div>
+        <div class="cell-item">Family experience metrics</div>
+        <div class="cell-item">System-wide learning export</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end clocks-grid -->
+
+<!-- BOTTOM PANELS -->
+<div class="flows-section">
+
+<!-- ROLES -->
+<div class="flow-card roles-card">
+  <div class="flow-title">Actor Roles Across the Model</div>
+  <div class="flow-grid">
+    <div class="flow-role">
+      <div class="flow-role-icon" style="background:rgba(192,132,252,0.15);border:1px solid rgba(192,132,252,0.3)">🤖</div>
+      <div class="flow-role-name" style="color:var(--ai)">AI Co-Intelligence</div>
+      <div class="flow-role-desc">
+        <strong>Clock 1:</strong> Synthesizes & maintains trajectory<br>
+        <strong>Clock 2:</strong> Monitors, detects drift, routes<br>
+        <strong>Clock 3:</strong> Prepares context, triages<br>
+        <strong>Layer 4:</strong> Learns from outcomes continuously
+      </div>
+    </div>
+    <div class="flow-role">
+      <div class="flow-role-icon" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3)">👨‍⚕️</div>
+      <div class="flow-role-name" style="color:var(--team)">Care Team</div>
+      <div class="flow-role-desc">
+        <strong>Clock 1:</strong> Authors trajectory via clinical judgment<br>
+        <strong>Clock 2:</strong> Handles exceptions beyond protocol<br>
+        <strong>Clock 3:</strong> Diagnoses, treats, decides under uncertainty<br>
+        <strong>Layer 4:</strong> Governs, calibrates, improves
+      </div>
+    </div>
+    <div class="flow-role">
+      <div class="flow-role-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3)">🧑</div>
+      <div class="flow-role-name" style="color:var(--patient)">Patient + Family</div>
+      <div class="flow-role-desc">
+        <strong>Clock 1:</strong> Owns goals, contributes life context<br>
+        <strong>Clock 2:</strong> Freed from coordination burden<br>
+        <strong>Clock 3:</strong> Seeks care; system routes appropriately<br>
+        <strong>Engagement:</strong> Graduated tiers — proxy & passive supported
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END OF LIFE -->
+<div class="flow-card eol-card">
+  <div class="flow-title">End-of-Life as Trajectory Gradient</div>
+  <div class="eol-stages">
+    <div class="eol-stage" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2)">
+      <div class="eol-stage-name" style="color:var(--clock2)">Active Mgmt</div>
+      <div class="eol-stage-desc" style="color:var(--text-muted)">Disease control, prevention, full intervention</div>
+    </div>
+    <div class="eol-stage" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2)">
+      <div class="eol-stage-name" style="color:var(--accent-warm)">Goal Alignment</div>
+      <div class="eol-stage-desc" style="color:var(--text-muted)">Function > numbers, proactive conversations</div>
+    </div>
+    <div class="eol-stage" style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2)">
+      <div class="eol-stage-name" style="color:var(--clock3)">De-escalation</div>
+      <div class="eol-stage-desc" style="color:var(--text-muted)">Reduce Tx burden, quality of life primary</div>
+    </div>
+    <div class="eol-stage" style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.2)">
+      <div class="eol-stage-name" style="color:var(--accent-rose)">Comfort Focus</div>
+      <div class="eol-stage-desc" style="color:var(--text-muted)">Symptom mgmt, dignity, family support</div>
+    </div>
+  </div>
+  <div class="flow-content">
+    <strong style="color:var(--text)">Key insight:</strong> Not a switch from "curative" to "palliative" — a continuous gradient governed by patient goals, functional trajectory, and disease burden. Clock 2's objective function shifts progressively. ~25% of Medicare spend occurs in last year of life — but most reflects chronic disease management, not futile intervention. The opportunity is better trajectory management over the last <em>years</em>, not the last weeks.
+  </div>
+</div>
+
+<!-- COMPETITIVE -->
+<div class="flow-card compete-card">
+  <div class="flow-title">Competitive Landscape & Strategic Window</div>
+  <div class="compete-item">
+    <div class="compete-icon" style="background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.25);color:var(--clock3)">⚡</div>
+    <div class="compete-text">
+      <div class="compete-name">External Disruptors (RPM & tech-enabled chronic care entrants)</div>
+      <div class="compete-desc">Building Clock 2 fragments — condition-specific RPM + intervention. Lack longitudinal context (Clock 1) and delivery system control. Fast but narrow.</div>
+    </div>
+  </div>
+  <div class="compete-item">
+    <div class="compete-icon" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.25);color:var(--accent-warm)">🏢</div>
+    <div class="compete-text">
+      <div class="compete-name">Retail Health (CVS/Oak Street, Amazon, ChenMed)</div>
+      <div class="compete-desc">High-touch MA primary care. Prove the economics but through human intensity, not AI-mediated trajectory management. Taking highest-value populations.</div>
+    </div>
+  </div>
+  <div class="compete-item">
+    <div class="compete-icon" style="background:rgba(34,211,238,0.15);border:1px solid rgba(34,211,238,0.25);color:var(--clock1)">🏥</div>
+    <div class="compete-text">
+      <div class="compete-name">Integrated Delivery Systems</div>
+      <div class="compete-desc">Have all raw ingredients: longitudinal data, delivery system, payment flexibility, organizational authority. Must overcome institutional knowledge debt. <strong style="color:var(--accent-warm)">Window is narrowing.</strong></div>
+    </div>
+  </div>
+  <div class="compete-item">
+    <div class="compete-icon" style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.25);color:var(--layer4)">📋</div>
+    <div class="compete-text">
+      <div class="compete-name">CMS ACCESS Model (2026)</div>
+      <div class="compete-desc">10-year outcome-aligned payment for tech-enabled chronic care. Creates payment pathway for non-traditional entrants. Accelerates competitive clock for incumbents.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end flows-section -->
+
+<!-- ATTRIBUTION -->
+<div class="attribution">
+  <div class="brand">What Health Becomes</div>
+  <div class="byline">Ben Wilson · Trajectory-Based Care · The Three Clocks Model</div>
+</div>
+
+</div><!-- end container -->
+
+</body>
+</html>

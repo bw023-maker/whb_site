@@ -342,3 +342,74 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   color: var(--ink-2);
   max-width: 56ch;
 }
+
+/* ---------- Figures ---------- */
+.fig { margin: 34px 0 30px; max-width: none; }
+.figsvg { width: 100%; height: auto; display: block; overflow: visible; }
+.fig svg text { font-family: var(--body); font-weight: 300; }
+.fig svg .mono { font-family: var(--mono); }
+.fig svg .serif { font-family: var(--display); }
+.fig figcaption {
+  font-size: 14px; color: var(--ink); line-height: 1.5;
+  margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--rule);
+}
+.fignum {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 1.3px;
+  text-transform: uppercase; color: var(--ink-3); margin-right: 8px;
+}
+.figsrc { font-size: 12.5px; color: var(--ink-3); font-style: italic; line-height: 1.5; margin-top: 7px; }
+
+/* ---------- Nine-function table ---------- */
+.tablewrap { margin: 34px 0 30px; }
+.tablehead {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 1.3px;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+}
+.fn-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.fn-table th {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.1px; text-transform: uppercase;
+  color: var(--ink-3); text-align: left; font-weight: 400;
+  padding: 0 18px 8px 0; border-bottom: 1px solid var(--rule);
+}
+.fn-table td { padding: 13px 18px 13px 0; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.55; }
+.fn-table tr:last-child td { border-bottom: none; }
+.fn-table .fn { font-family: var(--display); font-size: 15px; color: var(--accent); width: 20%; }
+.fn-table .is { color: var(--ink); width: 28%; }
+.fn-table .does { color: var(--ink-2); width: 52%; }
+
+/* ---------- Citations & references ---------- */
+sup.cite { font-size: 0.66em; color: var(--accent); font-weight: 500; padding-left: 1px; }
+.reflist { list-style: none; counter-reset: none; padding: 0; }
+.reflist li { font-size: 13.5px; color: var(--ink-2); line-height: 1.55; margin-bottom: 11px; padding-left: 26px; position: relative; }
+.reflist .rn { position: absolute; left: 0; font-family: var(--mono); font-size: 11px; color: var(--accent); }
+.reflist.extra li { padding-left: 18px; }
+.reflist.extra li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); }
+
+@media (max-width: 680px) {
+  .fn-table, .fn-table tbody, .fn-table tr, .fn-table td { display: block; width: 100%; }
+  .fn-table thead { display: none; }
+  .fn-table tr { padding: 15px 0; border-bottom: 1px solid var(--rule); }
+  .fn-table td { border: none; padding: 2px 0; }
+  .fn-table .fn { font-size: 16px; margin-bottom: 3px; }
+  .fig { margin-left: -20px; margin-right: -20px; }
+  .fig figcaption, .figsrc { padding-left: 20px; padding-right: 20px; }
+}
+
+/* Roles matrix variant */
+.fn-table.roles .fn { width: 17%; }
+.fn-table.roles .does { width: 27.6%; }
+.fn-table.roles th:first-child { width: 17%; }
+.figsrc a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.figsrc a:hover { border-bottom-color: var(--accent); }
+
+/* Homepage figure teaser */
+.teaser {
+  margin: 0 0 4px; padding: 0 0 34px; border-bottom: 1px solid var(--rule);
+}
+.teaser svg { width: 100%; height: auto; display: block; overflow: visible; }
+.teaser-cap {
+  font-size: 12.5px; color: var(--ink-3); font-style: italic;
+  margin-top: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.teaser-cap a { color: var(--accent); text-decoration: none; font-style: normal; }
+.teaser-cap a:hover { text-decoration: underline; }
