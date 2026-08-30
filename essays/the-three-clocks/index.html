@@ -178,7 +178,7 @@
         <table class="fn-table roles">
           <thead><tr><th></th><th>Clock one &middot; years to a lifetime</th><th>Clock two &middot; days to months</th><th>Clock three &middot; minutes to days</th></tr></thead>
           <tbody>
-          <tr><td class="fn">AI</td><td class="does">Maintains the trajectory. Reconciles new signals, projects the path forward, translates clinical complexity into language the patient can act on, and surfaces goal drift.</td><td class="does">Monitors and routes. Compares signals against the expected path rather than population thresholds, reconciles records across settings, and escalates with context assembled.</td><td class="does">Prepares the encounter. Triages, pre-positions goals, medications and directives, and drafts the record so the clinician isn&#x27;t typing.</td></tr>
+          <tr><td class="fn">AI</td><td class="does">Maintains the trajectory. Reconciles new signals, projects the path forward, translates clinical complexity into language the patient can act on, and surfaces goal drift.</td><td class="does">Monitors and routes. Compares signals against the expected path rather than population thresholds, reconciles records across settings, and escalates with context assembled. Maintains the coordination record &mdash; what is open, who owns it, what is overdue.</td><td class="does">Prepares the encounter. Triages, pre-positions goals, medications and directives, and drafts the record so the clinician isn&#x27;t typing.</td></tr>
           <tr><td class="fn">Care team</td><td class="does">Authors the path. Clinical judgment about where this person is actually headed, goal-setting conversations revisited as life changes, and sign-off on what the agent has projected.</td><td class="does">Handles the exceptions. Everything protocol cannot resolve, reviews escalations with context in hand, and owns the relationship through the episode.</td><td class="does">Diagnoses and decides. Examination, procedure, and judgment under uncertainty — and uses the visit to check clock one rather than only the complaint.</td></tr>
           <tr><td class="fn">Patient and family</td><td class="does">Owns the goals and the permissions. States what they want their life to look like, decides how deep the record goes, and contributes the context a chart never captures.</td><td class="does">Off coordination duty. No longer the default quarterback across six service lines. Where appropriate, prompts route to the family caregiver instead.</td><td class="does">Seeks care and gets routed well. Arrives without re-explaining their history, and gets a conversation rather than an intake.</td></tr>
           </tbody>
@@ -196,7 +196,7 @@
       <h2>How information moves</h2>
       <p>The biggest structural change is the shift from a series of snapshots to continuous movement.</p>
       <figure class="fig">
-<svg viewBox="-20 -14 960 430" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="-20 -14 960 440" class="figsvg" xmlns="http://www.w3.org/2000/svg">
 
 
 
@@ -229,33 +229,34 @@
 <text x="788" y="140" text-anchor="end" font-size="9.5" fill="var(--ink-2)">episode residue, treatment response, new normal</text>
 
 <!-- CLOCK TWO band -->
-<rect x="220" y="160" width="680" height="62" fill="var(--clock2)" fill-opacity="0.10" stroke="var(--clock2)" stroke-opacity="0.45" stroke-width="1"/>
+<rect x="220" y="158" width="680" height="76" fill="var(--clock2)" fill-opacity="0.10" stroke="var(--clock2)" stroke-opacity="0.45" stroke-width="1"/>
 <text x="234" y="182" class="serif" font-size="14.5" fill="var(--clock2)">Clock two &#183; the episode</text>
-<text x="234" y="200" font-size="10.5" fill="var(--ink)">Monitored against the expected path, not a population threshold.</text>
-<text x="234" y="215" class="mono" font-size="7.5" fill="var(--ink-2)">DIVERGENCE DETECTION &#183; CROSS-SETTING RECONCILIATION &#183; POST-DISCHARGE CONTINUITY</text>
+<text x="234" y="199" font-size="10.5" fill="var(--ink)">Maintains the coordination record &#8212; what is open, who owns it, what is overdue.</text>
+<text x="234" y="213" font-size="10" fill="var(--ink-2)">Monitored against the expected path, not a population threshold.</text>
+<text x="234" y="227" class="mono" font-size="7.5" fill="var(--ink-3)">DIVERGENCE DETECTION &#183; CROSS-SETTING RECONCILIATION &#183; POST-DISCHARGE CONTINUITY</text>
 
 <!-- flows 2 <-> 3 -->
-<g fill="none" stroke="var(--clock2)" stroke-width="1.1"><path d="M330,224 L330,270"/></g>
-<path d="M325,262 L330,270 L335,262" fill="none" stroke="var(--clock2)" stroke-width="1.1"/>
-<text x="342" y="242" font-size="9.5" fill="var(--ink-2)">context pre-positioned before arrival, urgency, routing</text>
-<g fill="none" stroke="var(--clock3)" stroke-width="1.1"><path d="M800,270 L800,224"/></g>
-<path d="M795,232 L800,224 L805,232" fill="none" stroke="var(--clock3)" stroke-width="1.1"/>
-<text x="788" y="258" text-anchor="end" font-size="9.5" fill="var(--ink-2)">new diagnoses, discharge triggers, care gaps</text>
+<g fill="none" stroke="var(--clock2)" stroke-width="1.1"><path d="M330,236 L330,272"/></g>
+<path d="M325,264 L330,272 L335,264" fill="none" stroke="var(--clock2)" stroke-width="1.1"/>
+<text x="342" y="250" font-size="9.5" fill="var(--ink-2)">context pre-positioned before arrival, urgency, routing</text>
+<g fill="none" stroke="var(--clock3)" stroke-width="1.1"><path d="M800,272 L800,236"/></g>
+<path d="M795,244 L800,236 L805,244" fill="none" stroke="var(--clock3)" stroke-width="1.1"/>
+<text x="788" y="266" text-anchor="end" font-size="9.5" fill="var(--ink-2)">new diagnoses, discharge triggers, care gaps</text>
 
 <!-- CLOCK THREE band -->
-<rect x="220" y="278" width="680" height="62" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45" stroke-width="1"/>
-<text x="234" y="300" class="serif" font-size="14.5" fill="var(--clock3)">Clock three &#183; the encounter</text>
-<text x="234" y="318" font-size="10.5" fill="var(--ink)">Arrives already informed &#8212; goals, medications, directives, active care.</text>
-<text x="234" y="333" class="mono" font-size="7.5" fill="var(--ink-2)">AND BECOMES A CHANCE TO CHECK CLOCK ONE</text>
+<rect x="220" y="282" width="680" height="62" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45" stroke-width="1"/>
+<text x="234" y="304" class="serif" font-size="14.5" fill="var(--clock3)">Clock three &#183; the encounter</text>
+<text x="234" y="322" font-size="10.5" fill="var(--ink)">Arrives already informed &#8212; goals, medications, directives, active care.</text>
+<text x="234" y="337" class="mono" font-size="7.5" fill="var(--ink-2)">AND BECOMES A CHANCE TO CHECK CLOCK ONE</text>
 
 <!-- learning layer -->
-<line x1="0" y1="360" x2="900" y2="360" stroke="var(--rule)" stroke-width="1"/>
-<text x="0" y="382" class="mono" font-size="8.5" fill="var(--clock1)">THE LEARNING LAYER &#183; CONTINUOUS, UNDERNEATH ALL THREE</text>
+<line x1="0" y1="364" x2="900" y2="360" stroke="var(--rule)" stroke-width="1"/>
+<text x="0" y="386" class="mono" font-size="8.5" fill="var(--clock1)">THE LEARNING LAYER &#183; CONTINUOUS, UNDERNEATH ALL THREE</text>
 <g font-size="10.5" fill="var(--ink-2)">
-  <text x="0" y="404">Did the projections hold?</text>
-  <text x="230" y="404">Did divergence detection help?</text>
-  <text x="490" y="404">Goal concordance</text>
-  <text x="680" y="404">Equity, disaggregated</text>
+  <text x="0" y="408">Did the projections hold?</text>
+  <text x="230" y="408">Did divergence detection help?</text>
+  <text x="490" y="408">Goal concordance</text>
+  <text x="680" y="408">Equity, disaggregated</text>
 </g>
 </svg>
 
@@ -266,6 +267,18 @@
       <p>Which layers, and how many, should be the patient&#x27;s decision. That matters more than it might appear. A record that holds your sleep, your nutrition, your adverse childhood experiences, and the content of your conversations can do considerably more for you. The honest version of this model is that the depth of the record should be a choice, made by the person it describes, revisited as they go. Some people will share everything. Some will share nothing beyond what their claims data already reveals, and their care should be no worse for it.</p>
       <p>With permission, the layers can include social determinants, nutrition, sleep, wearable data, labs and imaging, preventive needs, and context from conversations. Over time it becomes a living version of who you are, medically.</p>
       <p>This is not a hypothetical data structure. Published work on longitudinal health agents is converging on the same shape<sup class="cite">1</sup>: a persistent record separating shared medical knowledge and safety rules from private, individual memory, with explicit rules governing what gets promoted into the durable profile and what stays episodic or is discarded. In one recent architecture, that structure raised accuracy on longitudinal questions from under one percent to about forty-six, while sharply reducing how much context had to be exposed to answer them<sup class="cite">1</sup>. The retention decision and the permission decision turn out to be the same design problem.</p>
+
+      <p>Clock two needs its own record, and it is not the same one. Where the trajectory record holds who you are and where you are headed, the coordination record holds what is open right now: which referral is pending, which prescription has not been filled, who owns the next step, what is overdue, and what is waiting on somebody else. It spans service lines and channels, because that is exactly where coordination fails.</p>
+
+      <p>These two get conflated, and conflating them is a reliable way to build the wrong thing. The trajectory record is slow, clinical, and genuinely hard &mdash; ontology, projection, goals. The coordination record is fast, operational, and far more tractable. It is closer to the work-tracking systems every other complex industry already runs, and healthcare mostly does not, at least not across organizational boundaries.</p>
+
+      <p>Most of the burden we hand to families comes from the absence of the second one.</p>
+
+      <p>There is a useful word for what the coordination record is actually for, and it is <em>completion</em>. A recent <em>Nature Health</em> analysis argues that health outcomes are lost not only when care is unavailable but when people fail to finish the sequence of steps required to obtain it &mdash; the referral that never gets booked, the coverage question that stalls, the prescription never picked up.<sup class="cite">6</sup></p>
+
+      <p>I would add the other half. Completion fails on the way in, and it fails again on the way out. The discharge instructions given to somebody medicated and exhausted. The medication list that no longer matches what is in the cabinet. The follow-up nobody scheduled. The plan agreed in a room that then has to survive an ordinary week. Getting to care is one sequence. Acting on it afterward is another, and it is longer, less supervised, and where the burden mostly lands on families.</p>
+
+      <p>Both are clock two. Both are coordination record problems. We measure neither one well.</p>
       <p>Then it starts driving things.</p>
       <p>When you are seen, your medical identity is the first thing the care team looks at. Who this is. Who they are medically. What their goals are. What care they are currently receiving. That is the baseline, and care plans are set from it. In clock two, the plan is a near-term trajectory informed by clock one, carrying you through the episode and toward a new normal, which then updates clock one.</p>
       <p>In clock three, the visit stops being only about the thing you came in for. It becomes grounded in your goals and identity on clock one.</p>
@@ -293,7 +306,7 @@
       <h2>Closing</h2>
       <p>This has of course been a theoretical discussion, one approach that comes out of years of process improvement work and operational leadership inside good health systems. And with that what strikes me, over and over, is how often we solve the same problems. The same gaps show up for patients. The same items sit on the experience survey year after year: whether the team worked well together, whether my physician listened to me. We keep reinventing the same wheel to manage the misses between manual systems.</p>
       <p>As we work with each new AI model and each new harness, doors keep opening that were not there before. There is an Ethan Mollick line I will reiterate here: today&#x27;s model is the worst one you will ever work with<sup class="cite">5</sup>. We’re seeing the truth in those words revealed over months not years, creating an unusual moment. A chance to define something rather than inherit it.</p>
-      <p>The three clocks are one way to think about a different future. They are not the only way, nor likely the one we will land on. I am putting it out here to spark the adjacent possible.</p>
+      <p>The three clocks are one way to think about a different future. They are not the only way, nor likely the one we will land on. If I had to name the single most buildable thing in all of it, though, it would not be the trajectory record. It would be the smaller, faster one underneath &mdash; a list of what is open, with owners and due dates, that follows a person across every place they get care. I am putting it out here to spark the adjacent possible.</p>
       <p>So I would like to know what you would build. What model would make healthcare work better for you, for patients, for the people on your teams? And more than that: how do we use this technology not to replace what we have, and not simply to get more out of the resources we already stretch, but to seek new boundaries and address the needs we have been placing in the hands of others?</p>
     </div>
 
@@ -305,6 +318,7 @@
         <li><span class="rn">3</span> Gall J. Systemantics: How Systems Really Work and How They Fail. Quadrangle, 1975. A complex system that works is invariably found to have evolved from a simple system that worked.</li>
         <li><span class="rn">4</span> Governance Gaps in Agent Interoperability Protocols. arXiv:2606.31498, 2026. Standards including MCP, A2A, and ACP address access but not accountability.</li>
         <li><span class="rn">5</span> Mollick E. Co-Intelligence: Living and Working with AI. Portfolio, 2024, and subsequent writing at One Useful Thing.</li>
+        <li><span class="rn">6</span> Wu Y, Liu TYA, Topol EJ, Keane PA. Integration of consumer AI into healthcare pathways. Nature Health, 2026.</li>
       </ol>
       <h3 style="margin-top:26px">Additional sources informing this piece</h3>
       <ul class="reflist extra">

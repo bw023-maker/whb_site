@@ -117,16 +117,24 @@
       <p>The idea I keep converging on is a personal health companion.</p>
       <p>This is not a wellness app, and it is not an AI layer bolted onto a patient portal, though it may grow out of one. MyChart and the interfaces like it exist to manage flow and access for the health system. They were built as secondary systems to EHRs, often provide a minimum level of user functionality, and are behind the curve of changing user preferences for multichannel engagement.</p>
       <p>The first real moves towards a companion layer are already here. Epic&#x27;s Emmie is the AI assistant inside Hello World, their patient communications platform<sup class="cite">2</sup> — the SMS, voice, and email engine health systems use to reach patients at scale. OpenAI launched ChatGPT Health in January and opened it to all U.S. adults in July<sup class="cite">3</sup>.</p>
+
+      <p>That last one deserves a number attached to it. In the only independent evaluation published so far, ChatGPT Health under-triaged 52 percent of gold-standard emergencies, and its crisis safeguards fired inconsistently.<sup class="cite">11</sup> OpenAI has also released a separate, more rigorously validated version restricted to clinicians &mdash; which means the carefully evaluated product went to professionals and the less evaluated one went to everyone else. This is a system handling 230 million health questions a week.</p>
       <p>Both are useful. Both are also shaped by whose problem they were built to solve, and with Epic you can see it in what gets measured. The published outcomes for Hello World<sup class="cite">2</sup> are a thirty percent drop in no-shows, five thousand appointments rescheduled, thirty percent of balance notifications paid in full, forty staff hours saved a month. Every one is real. Every one is operational or financial. Not one is a health outcome.</p>
       <p>That&#x27;s not a criticism of Epic. It&#x27;s a description of where the assistant was placed. Emmie lives inside the outreach machine, now with a conversational front end. It makes that machine work considerably better. It does not change the siloed approach to the outreach. ChatGPT Health comes at it from the other direction: a general assistant that now has your labs, with no relationship to your care team at all.</p>
+
+      <p>There is a harder version of this problem underneath. When health systems choose AI tools, most of them pick whatever their EHR vendor offers rather than an independently validated alternative, and the deciding factors are integration convenience and institutional trust rather than performance.<sup class="cite">12</sup> Epic's own sepsis model went into wide deployment before external validation and turned out to require clinicians to work through 109 alerts to find a single true case. So the concern is not that the incumbent builds something bad. It is that the incumbent builds something adequate, ships it already integrated, and wins on convenience regardless of whether anything better exists.</p>
+
+      <p>Which is the strongest argument I know for putting the companion on the patient's side of the wall. A patient-side companion is not competing in that procurement cycle. It competes on whether a person finds it useful enough to keep opening &mdash; a different selection pressure entirely, and one where good enough to protect a moat is not a winning position.</p>
       <p>What I&#x27;m describing moves from reactive — use it when you need care — to relationship-first. An AI that advocates for the patient, helping them manage their own health, their own data, and their own coordination burden.</p>
       <p>The person I picture most often is somebody in their fifties taking care of a parent, keeping up with their own screening, and trying to build decent habits for their kids. For a large share of the population, managing coordination for themselves and then for the people they love is genuinely overwhelming.</p>
       <p>That&#x27;s a world of unmet need — understanding, answers, guidance, coordination — that healthcare and insurers keep out of provider channels out of necessity. We have a good sense of how large it is, because people are already asking somewhere else. OpenAI reported that 230 million people ask ChatGPT health and wellness questions every week<sup class="cite">4</sup>, close to a third of its weekly users. That demand didn&#x27;t appear when the tools did. It was always there. It just had nowhere to go.</p>
+
+      <p>And it is not only consumer behavior pointing at this. Joel Vengco, chief information and digital officer at Hartford HealthCare, describes the agents his team has been building for two years as companions &mdash; for patients, clinicians, and administrative staff. He names the gap directly: patients often wait days or weeks for an answer, and sometimes the answer is just what do I do next, or remind me again what this is.<sup class="cite">10</sup></p>
       <p>We&#x27;ve been trained by scarcity. People self-ration on cost, on access, or on the sense that they shouldn&#x27;t bother anyone. There&#x27;s a whole category of questions that never get asked. What was my last A1c? I&#x27;m making dinner — what&#x27;s a good option for my numbers? Is there aluminum in vaccines, and are they safe for my kid? The questions we don&#x27;t want flooding our virtual channels are exactly the ones a trusted, well-bounded resource should handle, with clear escalation when a human is needed.</p>
       <p>Getting to daily use takes four things: trust built through consistent accuracy, real work done on your behalf, a relationship that knows your life, and support for your curiosity rather than deflection of it. Those come first, and the order matters. Most visions start with clinical integration and assume the relationship follows. I think it runs the other way.</p>
       <h2>What it takes to build one</h2>
       <figure class="fig">
-<svg viewBox="-20 -10 940 400" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="-20 -10 940 468" class="figsvg" xmlns="http://www.w3.org/2000/svg">
 
 
 
@@ -192,6 +200,12 @@
 </g>
 <text x="347" y="340" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">the companion negotiates</text>
 <text x="347" y="355" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">with each one on your behalf</text>
+<line x1="0" y1="392" x2="876" y2="392" stroke="var(--rule)" stroke-width="1"/>
+<text x="0" y="412" class="mono" font-size="8.5" fill="var(--clock1)">THE COMPANION WORKS ACROSS TWO RECORDS</text>
+<text x="0" y="434" class="serif" font-size="12.5" fill="var(--ink)">Trajectory record &#8212; slow</text>
+<text x="0" y="450" font-size="10.5" fill="var(--ink-2)">Who you are, where your health is headed, what matters to you. The companion stays grounded in it.</text>
+<text x="450" y="434" class="serif" font-size="12.5" fill="var(--clock3)">Coordination record &#8212; fast</text>
+<text x="450" y="450" font-size="10.5" fill="var(--ink-2)">What is open, who owns it, what is overdue. The companion maintains it. This is the daily work.</text>
 </svg>
 
         <figcaption><span class="fignum">Figure 2</span> The membrane turns workstreams into a conversation.</figcaption>
@@ -205,7 +219,7 @@
           <tr><td class="fn">Model gateway</td><td class="is">A single entry point for every request</td><td class="does">Routes simple triage to small fast models and complex reasoning to large ones. Manages token budget and retention, which is what makes daily use affordable.</td></tr>
           <tr><td class="fn">Safety layer</td><td class="is">An independent monitor running beside the conversation, never inside it</td><td class="does">Classifies risk, checks context flags, watches for crisis language in text and speech. Keeps the conversation warm while monitoring stays conservative.</td></tr>
           <tr><td class="fn">Knowledge and grounding</td><td class="is">Retrieval over licensed, validated clinical sources</td><td class="does">Answers from triage protocols, drug interactions, preventive schedules and guidelines, with a citation on every claim. The most mature component here.</td></tr>
-          <tr><td class="fn">Companion engine</td><td class="is">The memory and relationship layer</td><td class="does">Holds the conversation, your history, your trajectory, your cadence and preferences. Knowing when not to interrupt is part of the job.</td></tr>
+          <tr><td class="fn">Companion engine</td><td class="is">The memory and relationship layer</td><td class="does">Holds the conversation, your history, and your cadence. Maintains the coordination record &mdash; what is open, who owns it, what is overdue &mdash; while staying grounded in the trajectory record, so coaching is specific to you rather than generic.</td></tr>
           <tr><td class="fn">Agent runtime</td><td class="is">Scoped task agents with an explicit tool registry</td><td class="does">Runs benefits checks, scheduling, adherence follow-up, triage. Each has its own identity and permissions, so nothing reaches further than its task requires.</td></tr>
           <tr><td class="fn">The membrane</td><td class="is">The bi-directional boundary, on the patient&#x27;s side</td><td class="does">Consolidates what the health system sends into one conversation, and carries your requests outward. This is what de-fragments the outreach.</td></tr>
           <tr><td class="fn">Handoff builder</td><td class="is">The packager for anything crossing the boundary</td><td class="does">Assembles the context that travels with a chart request, a wearable upload, or an escalation — so the receiving system gets what it needs and nothing more.</td></tr>
@@ -218,6 +232,16 @@
       <p>These are functions, not products. Any of them could be built several ways and a few exist already. What doesn&#x27;t exist is the assembly.</p>
       <p>The one worth pressure testing is the membrane — the bi-directional boundary that sits on the patient&#x27;s side. It takes in what the health system sends and carries out what the person needs.</p>
       <p>That&#x27;s the answer to the problem I opened with. Today four programs send four messages on four schedules and none of them know the others exist. With a membrane, that outreach arrives at your companion first, which knows what else came this week, what you already did, and when you&#x27;re willing to be interrupted. The health system still sends. You stop being the integration point.</p>
+
+      <p>Before going further I should state the objection in its strongest form, because it is the real one. A recent <em>Nature Health</em> analysis makes the point precisely: what matters is not depth at any single layer but depth occurring across several at once.<sup class="cite">13</sup> When the interface, the data, and the ability to act all deepen together, advice and action and payment finally connect, and care stops being abandoned at the handoffs. That is the entire benefit I have been describing.</p>
+
+      <p>And the same co-occurrence concentrates the risk. When the system that interprets your question also routes your care and is paid for that care, the advice sits inside a closed loop with a structural conflict of interest. Whoever controls the interface controls triage. The benefit and the harm come from the same mechanism, which is why the answer cannot be less integration. It has to be integration with the control sitting somewhere else.</p>
+
+      <p>It is worth being precise about what the companion actually holds, because two records matter here and they are not the same thing.</p>
+
+      <p>The trajectory record is slow: who you are, where your health is headed, what you have said matters to you. The coordination record is fast: what is open right now, who owns it, what is overdue, across every service line you touch.</p>
+
+      <p>The companion maintains the second one as its daily work, and stays grounded in the first. That second part is what separates a coordinator from a coach. Without the trajectory, a companion can chase open items competently and still never tell you whether any of it is moving you toward the life you said you wanted.</p>
       <p>And underneath everything sits identity, consent, and data. That&#x27;s where the architecture becomes a position. If those sit inside the health system, what you&#x27;ve built is a better portal. If they sit with the person, you&#x27;ve built an advocate. That decision gets made early and quietly, and it determines everything after it.</p>
       <h2>Why it has to be relational</h2>
       <p>The evidence for relationship keeps growing. Google&#x27;s AMIE, in a randomized study of simulated video consultations<sup class="cite">5</sup>, scored on par with primary care physicians on diagnostic accuracy and management — and was rated favorably against them on empathy, rapport, and confidence in care. How we make patients feel isn&#x27;t adjacent to the medicine. For adherence, for disclosure, for whether someone comes back at all, it may matter as much as what we prescribe.</p>
@@ -302,6 +326,10 @@
         <li><span class="rn">7</span> Gall J. Systemantics: How Systems Really Work and How They Fail. Quadrangle, 1975.</li>
         <li><span class="rn">8</span> Hua Y, et al. Analysis of clinical efficacy testing across chatbot generations, 2025.</li>
         <li><span class="rn">9</span> Gaus O, et al. READI framework for evaluating client-facing conversational agents, 2025. Review of 114 studies.</li>
+        <li><span class="rn">10</span> Dyrda L. AI agents to deepen in healthcare next year. Becker's Hospital Review, December 2025. Interview with Joel Vengco, chief information and digital officer, Hartford HealthCare.</li>
+        <li><span class="rn">11</span> Ramaswamy A, et al. ChatGPT Health performance in a structured test of triage recommendations. Nature Medicine, 2026.</li>
+        <li><span class="rn">12</span> Nong P, Adler-Milstein J, Apathy NC, Holmgren AJ, Everson J. Current use and evaluation of artificial intelligence and predictive models in US hospitals. Health Affairs, 2025;44:90–98. On the Epic sepsis model: Wong A, et al. External validation of a widely implemented proprietary sepsis prediction model in hospitalized patients. JAMA Internal Medicine, 2021;181:1065–1070.</li>
+        <li><span class="rn">13</span> Wu Y, Liu TYA, Topol EJ, Keane PA. Integration of consumer AI into healthcare pathways. Nature Health, 2026.</li>
       </ol>
       <h3 style="margin-top:26px">Additional sources informing this piece</h3>
       <ul class="reflist extra">
