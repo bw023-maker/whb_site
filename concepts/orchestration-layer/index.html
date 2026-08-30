@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Orchestration Layer — What Health Becomes</title>
+<meta name="description" content="A reference architecture for AI-enabled care in an integrated delivery system: engagement, orchestration, safety, the two records, knowledge, data, and inference across tenant, on-prem, and edge.">
+<meta name="author" content="Ben Wilson">
+<link rel="canonical" href="https://whathealthbecomes.com/concepts/orchestration-layer/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="What Health Becomes">
+<meta property="og:title" content="The Orchestration Layer">
+<meta property="og:description" content="A reference architecture for AI-enabled care in an integrated delivery system: engagement, orchestration, safety, the two records, knowledge, data, and inference across tenant, on-prem, and edge.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/theme.js"></script>
+<script src="/assets/lightbox.js" defer></script>
+</head>
+<body>
+<div class="shell">
+
+  <nav class="nav">
+    <a class="nav-brand" href="/">What Health <em>Becomes</em></a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/essays/">Essays</a>
+        <a href="/concepts/" class="on">Concepts</a>
+        <a href="/reading/">Reading</a>
+        <a href="/about/">About</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">Dark</button>
+    </div>
+  </nav>
+
+  <article class="article">
+    <header class="article-head">
+      <h1 class="article-title">The Orchestration Layer</h1>
+    </header>
+
+    <div class="definition">
+      <div class="dfn-label">Definition</div>
+      <p>The connective layer between capable models and useful care: routing, agent lifecycle, tool access, safety monitoring, memory, and the records everything reads and writes. It is the part of an AI-enabled health system that does not exist yet, and the reason capability keeps outrunning deployment.</p>
+    </div>
+
+    <div class="prose">
+      <p>Almost everything needed to build AI-enabled care already exists somewhere in a large health system. The EHR is there. The data platform is there. The models are available under enterprise agreements. What is missing sits between them.</p>
+
+      <figure class="fig">
+<svg viewBox="-20 -14 980 700" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+<!-- ZONE HEADER -->
+<text x="0" y="6" class="mono" font-size="9" fill="var(--ink-3)">DEPLOYMENT ZONE</text>
+<g class="mono" font-size="8">
+  <rect x="640" y="-6" width="10" height="10" fill="var(--clock1)" fill-opacity="0.18" stroke="var(--clock1)" stroke-width="0.7"/>
+  <text x="656" y="3" fill="var(--ink-2)">TENANT · BAA</text>
+  <rect x="750" y="-6" width="10" height="10" fill="var(--clock2)" fill-opacity="0.18" stroke="var(--clock2)" stroke-width="0.7"/>
+  <text x="766" y="3" fill="var(--ink-2)">ON-PREM · EDGE</text>
+  <rect x="878" y="-6" width="10" height="10" fill="none" stroke="var(--ink-3)" stroke-width="0.7" stroke-dasharray="2,2"/>
+  <text x="894" y="3" fill="var(--ink-2)">EXTERNAL</text>
+</g>
+<line x1="0" y1="16" x2="940" y2="16" stroke="var(--rule)" stroke-width="1"/>
+
+<!-- ============ 1 ENGAGEMENT ============ -->
+<text x="0" y="42" class="serif" font-size="14" fill="var(--ink)">Engagement surfaces</text>
+<text x="0" y="58" class="mono" font-size="7.5" fill="var(--ink-3)">WHERE PEOPLE MEET THE SYSTEM</text>
+<g>
+  <rect x="170" y="26" width="140" height="42" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="180" y="44" font-size="10.5" fill="var(--ink)">Personal companion</text>
+  <text x="180" y="58" font-size="9" fill="var(--ink-2)">multimodal · patient-side</text>
+
+  <rect x="318" y="26" width="130" height="42" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="328" y="44" font-size="10.5" fill="var(--ink)">Member portal</text>
+  <text x="328" y="58" font-size="9" fill="var(--ink-2)">app · web</text>
+
+  <rect x="456" y="26" width="130" height="42" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="466" y="44" font-size="10.5" fill="var(--ink)">Outreach channels</text>
+  <text x="466" y="58" font-size="9" fill="var(--ink-2)">SMS · voice · email</text>
+
+  <rect x="594" y="26" width="150" height="42" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="604" y="44" font-size="10.5" fill="var(--ink)">Clinician + staff tools</text>
+  <text x="604" y="58" font-size="9" fill="var(--ink-2)">in-workflow assistants</text>
+
+  <rect x="752" y="26" width="188" height="42" fill="none" stroke="var(--ink-3)" stroke-opacity="0.5" stroke-dasharray="3,3"/>
+  <text x="762" y="44" font-size="10.5" fill="var(--ink-2)">Consumer devices</text>
+  <text x="762" y="58" font-size="9" fill="var(--ink-3)">wearables · home · third-party AI</text>
+</g>
+
+<!-- ============ 2 ORCHESTRATION ============ -->
+<line x1="0" y1="84" x2="940" y2="84" stroke="var(--rule)" stroke-width="0.7"/>
+<text x="0" y="110" class="serif" font-size="14" fill="var(--ink)">Orchestration</text>
+<text x="0" y="126" class="mono" font-size="7.5" fill="var(--ink-3)">THE LAYER THAT DOES NOT EXIST YET</text>
+<text x="0" y="140" font-size="9" fill="var(--ink-2)">Routing, agent lifecycle,</text>
+<text x="0" y="152" font-size="9" fill="var(--ink-2)">tool registries, handoffs</text>
+<g>
+  <rect x="170" y="94" width="176" height="66" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45"/>
+  <text x="180" y="112" font-size="10.5" fill="var(--ink)">Model gateway</text>
+  <text x="180" y="126" font-size="9" fill="var(--ink-2)">routing by task complexity,</text>
+  <text x="180" y="138" font-size="9" fill="var(--ink-2)">token budget, retention policy</text>
+  <text x="180" y="153" class="mono" font-size="7" fill="var(--clock3)">TO BUILD</text>
+
+  <rect x="354" y="94" width="176" height="66" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45"/>
+  <text x="364" y="112" font-size="10.5" fill="var(--ink)">Agent orchestration</text>
+  <text x="364" y="126" font-size="9" fill="var(--ink-2)">graph runtime, task agents,</text>
+  <text x="364" y="138" font-size="9" fill="var(--ink-2)">scoped identity per agent</text>
+  <text x="364" y="153" class="mono" font-size="7" fill="var(--clock3)">TO BUILD</text>
+
+  <rect x="538" y="94" width="176" height="66" fill="var(--clock2)" fill-opacity="0.09" stroke="var(--clock2)" stroke-opacity="0.45"/>
+  <text x="548" y="112" font-size="10.5" fill="var(--ink)">Tool + context protocol</text>
+  <text x="548" y="126" font-size="9" fill="var(--ink-2)">MCP client and server,</text>
+  <text x="548" y="138" font-size="9" fill="var(--ink-2)">agent-to-agent, API gateway</text>
+  <text x="548" y="153" class="mono" font-size="7" fill="var(--clock2)">EMERGING</text>
+
+  <rect x="722" y="94" width="218" height="66" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45"/>
+  <text x="732" y="112" font-size="10.5" fill="var(--ink)">The membrane</text>
+  <text x="732" y="126" font-size="9" fill="var(--ink-2)">consolidates inbound outreach,</text>
+  <text x="732" y="138" font-size="9" fill="var(--ink-2)">carries outbound intent with context</text>
+  <text x="732" y="153" class="mono" font-size="7" fill="var(--clock3)">TO BUILD</text>
+</g>
+
+<!-- ============ 3 SAFETY ============ -->
+<line x1="0" y1="176" x2="940" y2="176" stroke="var(--rule)" stroke-width="0.7"/>
+<text x="0" y="202" class="serif" font-size="14" fill="var(--ink)">Safety and governance</text>
+<text x="0" y="218" class="mono" font-size="7.5" fill="var(--ink-3)">BESIDE THE CONVERSATION,</text>
+<text x="0" y="230" class="mono" font-size="7.5" fill="var(--ink-3)">NEVER INSIDE IT</text>
+<g>
+  <rect x="170" y="186" width="176" height="58" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45"/>
+  <text x="180" y="204" font-size="10.5" fill="var(--ink)">Proxy and guardrails</text>
+  <text x="180" y="218" font-size="9" fill="var(--ink-2)">PHI redaction, prompt policy,</text>
+  <text x="180" y="230" font-size="9" fill="var(--ink-2)">jailbreak and injection defense</text>
+
+  <rect x="354" y="186" width="176" height="58" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45"/>
+  <text x="364" y="204" font-size="10.5" fill="var(--ink)">Independent risk monitor</text>
+  <text x="364" y="218" font-size="9" fill="var(--ink-2)">crisis detection, escalation state,</text>
+  <text x="364" y="230" font-size="9" fill="var(--ink-2)">separate from the talker</text>
+
+  <rect x="538" y="186" width="176" height="58" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="548" y="204" font-size="10.5" fill="var(--ink)">Audit and provenance</text>
+  <text x="548" y="218" font-size="9" fill="var(--ink-2)">every action to a request,</text>
+  <text x="548" y="230" font-size="9" fill="var(--ink-2)">every claim to a source</text>
+
+  <rect x="722" y="186" width="218" height="58" fill="var(--clock3)" fill-opacity="0.07" stroke="var(--clock3)" stroke-opacity="0.45"/>
+  <text x="732" y="204" font-size="10.5" fill="var(--ink)">Evaluation and drift</text>
+  <text x="732" y="218" font-size="9" fill="var(--ink-2)">completion and abandonment, equity</text>
+  <text x="732" y="230" font-size="9" fill="var(--ink-2)">disaggregation, model and agent drift</text>
+</g>
+
+<!-- ============ 4 RECORDS ============ -->
+<line x1="0" y1="260" x2="940" y2="260" stroke="var(--rule)" stroke-width="0.7"/>
+<text x="0" y="286" class="serif" font-size="14" fill="var(--ink)">The two records</text>
+<text x="0" y="302" class="mono" font-size="7.5" fill="var(--ink-3)">THE OBJECTS EVERYTHING</text>
+<text x="0" y="314" class="mono" font-size="7.5" fill="var(--ink-3)">ELSE READS AND WRITES</text>
+<g>
+  <rect x="170" y="270" width="360" height="70" fill="var(--clock1)" fill-opacity="0.09" stroke="var(--clock1)" stroke-opacity="0.55" stroke-width="1.1"/>
+  <text x="182" y="290" class="serif" font-size="13" fill="var(--clock1)">Trajectory record</text>
+  <text x="182" y="306" font-size="9.5" fill="var(--ink)">Who this person is, where their health is headed, what matters.</text>
+  <text x="182" y="320" class="mono" font-size="7" fill="var(--ink-2)">CLINICAL STATE · GOALS · RESPONSE HISTORY · PROJECTED PATH</text>
+  <text x="182" y="333" font-size="9" fill="var(--ink-2)">Slow · clinical · permissioned layers per stream</text>
+
+  <rect x="538" y="270" width="402" height="70" fill="var(--clock2)" fill-opacity="0.11" stroke="var(--clock2)" stroke-opacity="0.55" stroke-width="1.1"/>
+  <text x="550" y="290" class="serif" font-size="13" fill="var(--clock2)">Coordination record</text>
+  <text x="550" y="306" font-size="9.5" fill="var(--ink)">What is open right now, who owns it, what turn, what is overdue.</text>
+  <text x="550" y="320" class="mono" font-size="7" fill="var(--ink-2)">ITEM · OWNER · STATE · TURN · DUE · BLOCKING REASON</text>
+  <text x="550" y="333" font-size="9" fill="var(--ink-2)">Fast · operational · crosses organizational boundaries</text>
+</g>
+<text x="170" y="356" font-size="9.5" fill="var(--ink-2)" font-style="italic">Exposed to every application through a single member-context API. Portable on request &#8212; exit is the test of ownership.</text>
+
+<!-- ============ 5 KNOWLEDGE ============ -->
+<line x1="0" y1="372" x2="940" y2="372" stroke="var(--rule)" stroke-width="0.7"/>
+<text x="0" y="398" class="serif" font-size="14" fill="var(--ink)">Knowledge and memory</text>
+<text x="0" y="414" class="mono" font-size="7.5" fill="var(--ink-3)">GROUNDING</text>
+<g>
+  <rect x="170" y="382" width="176" height="58" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="180" y="400" font-size="10.5" fill="var(--ink)">Clinical retrieval</text>
+  <text x="180" y="414" font-size="9" fill="var(--ink-2)">vetted corpus, protocols,</text>
+  <text x="180" y="426" font-size="9" fill="var(--ink-2)">citation on every claim</text>
+
+  <rect x="354" y="382" width="176" height="58" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="364" y="400" font-size="10.5" fill="var(--ink)">Working memory</text>
+  <text x="364" y="414" font-size="9" fill="var(--ink-2)">short and long term,</text>
+  <text x="364" y="426" font-size="9" fill="var(--ink-2)">per-member ontology</text>
+
+  <rect x="538" y="382" width="176" height="58" fill="var(--clock2)" fill-opacity="0.09" stroke="var(--clock2)" stroke-opacity="0.45"/>
+  <text x="548" y="400" font-size="10.5" fill="var(--ink)">Cohort reference</text>
+  <text x="548" y="414" font-size="9" fill="var(--ink-2)">what happens to people</text>
+  <text x="548" y="426" font-size="9" fill="var(--ink-2)">like this one</text>
+
+  <rect x="722" y="382" width="218" height="58" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="732" y="400" font-size="10.5" fill="var(--ink)">Enterprise knowledge</text>
+  <text x="732" y="414" font-size="9" fill="var(--ink-2)">policy, benefits, coverage, operations</text>
+  <text x="732" y="426" font-size="9" fill="var(--ink-2)">&#8212; the questions nobody can answer today</text>
+</g>
+
+<!-- ============ 6 DATA ============ -->
+<line x1="0" y1="456" x2="940" y2="456" stroke="var(--rule)" stroke-width="0.7"/>
+<text x="0" y="482" class="serif" font-size="14" fill="var(--ink)">Data platform</text>
+<text x="0" y="498" class="mono" font-size="7.5" fill="var(--ink-3)">MOSTLY ALREADY EXISTS</text>
+<g>
+  <rect x="170" y="466" width="140" height="54" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="180" y="484" font-size="10.5" fill="var(--ink)">EHR</text>
+  <text x="180" y="498" font-size="9" fill="var(--ink-2)">FHIR APIs, registries,</text>
+  <text x="180" y="510" font-size="9" fill="var(--ink-2)">clinical warehouse</text>
+
+  <rect x="318" y="466" width="140" height="54" fill="var(--clock1)" fill-opacity="0.07" stroke="var(--clock1)" stroke-opacity="0.4"/>
+  <text x="328" y="484" font-size="10.5" fill="var(--ink)">Lakehouse</text>
+  <text x="328" y="498" font-size="9" fill="var(--ink-2)">claims, utilization,</text>
+  <text x="328" y="510" font-size="9" fill="var(--ink-2)">quality measures</text>
+
+  <rect x="466" y="466" width="140" height="54" fill="var(--clock2)" fill-opacity="0.09" stroke="var(--clock2)" stroke-opacity="0.45"/>
+  <text x="476" y="484" font-size="10.5" fill="var(--ink)">Ambient capture</text>
+  <text x="476" y="498" font-size="9" fill="var(--ink-2)">encounter transcripts,</text>
+  <text x="476" y="510" font-size="9" fill="var(--ink-2)">secure messages</text>
+
+  <rect x="614" y="466" width="140" height="54" fill="var(--clock2)" fill-opacity="0.09" stroke="var(--clock2)" stroke-opacity="0.45"/>
+  <text x="624" y="484" font-size="10.5" fill="var(--ink)">Social context</text>
+  <text x="624" y="498" font-size="9" fill="var(--ink-2)">SDOH screening,</text>
+  <text x="624" y="510" font-size="9" fill="var(--ink-2)">life events</text>
+
+  <rect x="762" y="466" width="178" height="54" fill="var(--clock2)" fill-opacity="0.09" stroke="var(--clock2)" stroke-opacity="0.45"/>
+  <text x="772" y="484" font-size="10.5" fill="var(--ink)">Device and signal streams</text>
+  <text x="772" y="498" font-size="9" fill="var(--ink-2)">wearables, remote monitoring,</text>
+  <text x="772" y="510" font-size="9" fill="var(--ink-2)">pharmacy fills</text>
+</g>
+
+<!-- ============ 7 INFERENCE ============ -->
+<line x1="0" y1="536" x2="940" y2="536" stroke="var(--rule)" stroke-width="0.7"/>
+<text x="0" y="562" class="serif" font-size="14" fill="var(--ink)">Inference</text>
+<text x="0" y="578" class="mono" font-size="7.5" fill="var(--ink-3)">WHERE THE GATE ACTUALLY SITS</text>
+<g>
+  <rect x="170" y="546" width="230" height="62" fill="var(--clock1)" fill-opacity="0.09" stroke="var(--clock1)" stroke-opacity="0.5"/>
+  <text x="180" y="564" font-size="10.5" fill="var(--ink)">Frontier models in tenant</text>
+  <text x="180" y="578" font-size="9" fill="var(--ink-2)">Private endpoints under BAA. No training</text>
+  <text x="180" y="590" font-size="9" fill="var(--ink-2)">on inputs, no retention, region-pinned.</text>
+  <text x="180" y="603" class="mono" font-size="7" fill="var(--clock1)">TENANT · BAA</text>
+
+  <rect x="408" y="546" width="230" height="62" fill="var(--clock2)" fill-opacity="0.11" stroke="var(--clock2)" stroke-opacity="0.5"/>
+  <text x="418" y="564" font-size="10.5" fill="var(--ink)">Open models on-prem</text>
+  <text x="418" y="578" font-size="9" fill="var(--ink-2)">Self-hosted for the most sensitive work</text>
+  <text x="418" y="590" font-size="9" fill="var(--ink-2)">and for cost control at volume.</text>
+  <text x="418" y="603" class="mono" font-size="7" fill="var(--clock2)">ON-PREM</text>
+
+  <rect x="646" y="546" width="294" height="62" fill="var(--clock2)" fill-opacity="0.11" stroke="var(--clock2)" stroke-opacity="0.5"/>
+  <text x="656" y="564" font-size="10.5" fill="var(--ink)">Small and edge models</text>
+  <text x="656" y="578" font-size="9" fill="var(--ink-2)">On device or at the edge: triage, classification,</text>
+  <text x="656" y="590" font-size="9" fill="var(--ink-2)">redaction, vision. Cheap, fast, private by construction.</text>
+  <text x="656" y="603" class="mono" font-size="7" fill="var(--clock2)">EDGE</text>
+</g>
+
+<!-- FOOT -->
+<line x1="0" y1="628" x2="940" y2="628" stroke="var(--rule)" stroke-width="1"/>
+<text x="0" y="652" class="serif" font-size="14.5" fill="var(--ink)">Almost every box below the orchestration line already exists. The gap is the connective layer above it.</text>
+<text x="0" y="674" font-size="10.5" fill="var(--ink-2)">Which is why the constraint on AI-enabled care is architectural rather than technical &#8212; and why the deployment boundary, not the model, is what enterprises actually negotiate.</text>
+</svg>
+
+        <figcaption><span class="fignum">Figure</span> A reference architecture for an integrated delivery system</figcaption>
+        <p class="figsrc">Generic reference model. Component names are industry-standard rather than vendor-specific, and deployment zones reflect the boundaries most health systems actually negotiate.</p>
+      </figure>
+
+      <h2>Reading the diagram</h2>
+      <p>Two things are worth noticing about the shape of it.</p>
+      <p><strong>The bottom half is mostly built.</strong> EHR and FHIR access, a lakehouse, quality registries, ambient documentation, social screening, device streams. Health systems have spent fifteen years and enormous sums assembling exactly this. It is not the constraint.</p>
+      <p><strong>The gap is the band above it.</strong> Model gateway, agent orchestration, the membrane, an independent risk monitor, and the two records everything else reads and writes. Very little of that exists in production anywhere, and none of it is a model problem.</p>
+
+      <h2>Why the deployment zone matters more than the model</h2>
+      <p>Every enterprise conversation about AI in healthcare eventually stops being about capability and starts being about where the inference happens. That is not obstruction. It is the shape of the constraint.</p>
+      <p><strong>Tenant under a business associate agreement.</strong> Frontier models reached through private endpoints inside the organization's own cloud tenant, with contractual guarantees that inputs are not retained or trained on and that data stays in a known region. This is where most enterprise health AI runs today, and it is the minimum bar for anything touching protected health information.</p>
+      <p><strong>On-premises.</strong> Open-weight models self-hosted for the most sensitive workloads, and increasingly for cost control once volume is real. Inference cost is an operating expense that scales with success, which changes the calculus in a way pilots never reveal.</p>
+      <p><strong>Edge and small models.</strong> Classification, triage, redaction, and vision running on device or close to it. Cheap, fast, and private by construction rather than by contract. Underused, and the most likely place for near-term wins that do not require a governance cycle.</p>
+      <p>The practical consequence is that architecture decisions get made on the boundary, not on the benchmark. A slightly less capable model that can run where the data already sits will beat a better model that cannot, every time. That is a real constraint and it is not going away, which is an argument for designing around it rather than waiting it out.</p>
+
+      <h2>What the layer has to do</h2>
+      <p><strong>Route.</strong> Send each request to the right model — small and fast for triage and classification, larger for reasoning that warrants it. This is what makes continuous use affordable rather than a pilot with a budget line.</p>
+      <p><strong>Hold context.</strong> Working memory, per-member ontology, and retrieval over vetted clinical sources with citation attached to every claim.</p>
+      <p><strong>Act across systems.</strong> Scoped task agents with explicit tool registries, so nothing reaches further than its job requires, and every action traces back to a request.</p>
+      <p><strong>Watch itself.</strong> Risk monitoring that runs beside the conversation rather than inside it. Drift detection on agent behavior and clinical error. Outcome measurement disaggregated by population, because a system that works on average and badly for some has failed.</p>
+      <p><strong>Maintain the records.</strong> <a href="/concepts/trajectory-record/">The trajectory record</a> and <a href="/concepts/coordination-record/">the coordination record</a>, exposed to any application that needs member context through a single interface.</p>
+
+      <h2>Two lenses for anything you are about to build</h2>
+      <p>A test worth applying to every AI use case an organization evaluates. <em>Does this optimize the current model, or does it advance toward the future state?</em></p>
+      <p>Both can be valuable. But they should be labeled honestly. A tool that improves documentation throughput is current-state optimization. A tool that builds a continuous signal layer, or maintains a record between visits, is future-state infrastructure. Most organizations need both and fund only the first, because the first has a return you can put in a slide and the second has a return that arrives later and lands somewhere else on the org chart.</p>
+      <p>That is the same pattern as <a href="/concepts/absorb-vs-streamline/">absorb versus streamline</a>, one layer down in the stack.</p>
+    </div>
+
+    <div class="appears">
+      <h3>Where this appears</h3>
+      <ul>
+        <li><a href="/essays/the-companion-layer/">The Companion Layer</a></li>
+        <li><a href="/essays/the-three-clocks/">The Three Clocks</a></li>
+        <li><a href="/concepts/metered-adoption/">Metered Adoption</a></li>
+      </ul>
+    </div>
+
+    <a class="back-link" href="/concepts/">← All concepts</a>
+  </article>
+
+  <footer class="foot">
+    <div>
+      <div>Ben Wilson · What Health Becomes</div>
+      <p class="disclaimer">Everything here is my own work and my own opinion. It does not represent the views of my employer, and contains no employer information of any kind.</p>
+    </div>
+    <div>
+      <a href="/essays/">Essays</a> ·
+      <a href="/concepts/">Concepts</a> ·
+      <a href="/reading/">Reading</a>
+        <a href="/about/">About</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

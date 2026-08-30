@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metered Adoption — What Health Becomes</title>
+<meta name="description" content="Adoption of AI is not limited by model capability. It is metered by three gates: who the tools were built for, what enterprises require before they move, and how few people build rather than consume.">
+<meta name="author" content="Ben Wilson">
+<link rel="canonical" href="https://whathealthbecomes.com/concepts/metered-adoption/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="What Health Becomes">
+<meta property="og:title" content="Metered Adoption">
+<meta property="og:description" content="Adoption of AI is not limited by model capability. It is metered by three gates: who the tools were built for, what enterprises require before they move, and how few people build rather than consume.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/theme.js"></script>
+<script src="/assets/lightbox.js" defer></script>
+</head>
+<body>
+<div class="shell">
+
+  <nav class="nav">
+    <a class="nav-brand" href="/">What Health <em>Becomes</em></a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/essays/">Essays</a>
+        <a href="/concepts/" class="on">Concepts</a>
+        <a href="/reading/">Reading</a>
+        <a href="/about/">About</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">Dark</button>
+    </div>
+  </nav>
+
+  <article class="article">
+    <header class="article-head">
+      <h1 class="article-title">Metered Adoption</h1>
+    </header>
+
+    <div class="definition">
+      <div class="dfn-label">Definition</div>
+      <p>The diffusion of AI is not paced by model capability. It is metered by three gates that have almost nothing to do with how good the models are: who the tools were built for, what organizations require before they will move, and how few people build rather than consume.</p>
+    </div>
+
+    <div class="prose">
+      <p>Most of the public argument about AI &mdash; the data center buildout, the capability curves, the doom cycle &mdash; assumes that capability drives adoption. Watch what actually happens inside a large organization and that assumption does not survive.</p>
+
+      <figure class="fig">
+<svg viewBox="-20 -14 960 480" class="figsvg" xmlns="http://www.w3.org/2000/svg">
+<!-- ADOPTION CURVE -->
+<text x="0" y="8" class="mono" font-size="9.5" fill="var(--ink-3)">WHO ADOPTS, AND WHEN</text>
+
+<path d="M40,210 C120,210 150,196 200,160 C250,124 280,58 360,46 C440,34 470,90 520,132 C570,174 620,200 700,206 C760,210 800,211 860,212"
+      fill="none" stroke="var(--ink-3)" stroke-width="1.1"/>
+<line x1="40" y1="212" x2="880" y2="212" stroke="var(--rule)" stroke-width="1"/>
+
+<g stroke="var(--rule)" stroke-width="0.8" stroke-dasharray="2,3">
+  <line x1="196" y1="60" x2="196" y2="212"/>
+  <line x1="330" y1="42" x2="330" y2="212"/>
+  <line x1="500" y1="60" x2="500" y2="212"/>
+  <line x1="672" y1="150" x2="672" y2="212"/>
+</g>
+<g class="mono" font-size="8" fill="var(--ink-3)">
+  <text x="112" y="228" text-anchor="middle">INNOVATORS</text>
+  <text x="263" y="228" text-anchor="middle">EARLY ADOPTERS</text>
+  <text x="415" y="228" text-anchor="middle">EARLY MAJORITY</text>
+  <text x="586" y="228" text-anchor="middle">LATE MAJORITY</text>
+  <text x="776" y="228" text-anchor="middle">LAGGARDS</text>
+</g>
+<text x="40" y="248" font-size="10.5" fill="var(--ink-2)">Where most enterprise healthcare sits today</text>
+<path d="M232,240 L262,232" stroke="var(--ink-3)" stroke-width="0.8" fill="none"/>
+
+<!-- THE THREE GATES -->
+<line x1="0" y1="276" x2="880" y2="276" stroke="var(--rule)" stroke-width="1"/>
+<text x="0" y="296" class="mono" font-size="9.5" fill="var(--clock3)">THREE GATES, NONE OF THEM ABOUT MODEL CAPABILITY</text>
+
+<g>
+  <line x1="0" y1="318" x2="0" y2="404" stroke="var(--clock1)" stroke-width="2"/>
+  <text x="14" y="330" class="serif" font-size="14" fill="var(--ink)">Built for builders</text>
+  <text x="14" y="350" font-size="10.5" fill="var(--ink-2)">Models and harnesses are sharpest at what their</text>
+  <text x="14" y="365" font-size="10.5" fill="var(--ink-2)">makers needed: code, automation, computer use.</text>
+  <text x="14" y="380" font-size="10.5" fill="var(--ink-2)">Non-technical value has come mostly from people</text>
+  <text x="14" y="395" font-size="10.5" fill="var(--ink-2)">improvising with tools built for engineers.</text>
+  <text x="14" y="418" class="mono" font-size="8" fill="var(--clock1)">OPENS WHEN: TRAINED FOR KNOWLEDGE WORK</text>
+</g>
+
+<g>
+  <line x1="300" y1="318" x2="300" y2="404" stroke="var(--clock2)" stroke-width="2"/>
+  <text x="314" y="330" class="serif" font-size="14" fill="var(--ink)">The enterprise gate</text>
+  <text x="314" y="350" font-size="10.5" fill="var(--ink-2)">Organizations are slow and risk-averse, and they</text>
+  <text x="314" y="365" font-size="10.5" fill="var(--ink-2)">require three things first: the data stays theirs,</text>
+  <text x="314" y="380" font-size="10.5" fill="var(--ink-2)">inference cost returns something, and intrusion</text>
+  <text x="314" y="395" font-size="10.5" fill="var(--ink-2)">can be prevented. All three, not two.</text>
+  <text x="314" y="418" class="mono" font-size="8" fill="var(--clock2)">OPENS WHEN: SOVEREIGNTY, ROI, SECURITY</text>
+</g>
+
+<g>
+  <line x1="600" y1="318" x2="600" y2="404" stroke="var(--clock3)" stroke-width="2"/>
+  <text x="614" y="330" class="serif" font-size="14" fill="var(--ink)">The creator ratio</text>
+  <text x="614" y="350" font-size="10.5" fill="var(--ink-2)">Ninety percent will use what is put in front of</text>
+  <text x="614" y="365" font-size="10.5" fill="var(--ink-2)">them. Nine percent will configure and adapt it.</text>
+  <text x="614" y="380" font-size="10.5" fill="var(--ink-2)">One percent will build. Designing as though</text>
+  <text x="614" y="395" font-size="10.5" fill="var(--ink-2)">everyone will learn to prompt is designing for one.</text>
+  <text x="614" y="418" class="mono" font-size="8" fill="var(--clock3)">OPENS WHEN: IT WORKS WITHOUT CONFIGURATION</text>
+</g>
+
+<!-- CONCLUSION -->
+<line x1="0" y1="440" x2="880" y2="440" stroke="var(--rule)" stroke-width="1"/>
+<text x="0" y="462" class="serif" font-size="15" fill="var(--ink)">All three gates open on the harness, not the model.</text>
+</svg>
+
+        <figcaption><span class="fignum">Figure</span> Three gates, none of them about model capability</figcaption>
+        <p class="figsrc">Adoption curve after Rogers. Participation ratio after the 90&ndash;9&ndash;1 pattern observed in online communities.</p>
+      </figure>
+
+      <h2>Built for builders</h2>
+      <p>The people building the models and the primitives are technical people. So the models and the harnesses around them are sharpest at the work their makers needed done: writing code, automating repetitive tasks, operating a computer. That is not a criticism. It is what you would expect, and it is how most general-purpose technology starts.</p>
+      <p>The consequence is easy to miss. Nearly all of the non-technical value so far has come from people improvising &mdash; finding novel uses for instruments built for engineers. The knowledge worker who figures out that a coding assistant is also a thinking partner is doing something the tool was not designed for and is not optimized around.</p>
+      <p>This gate opens when models are trained for knowledge work in its own right, and when harnesses stop demanding skills, connectors, and plug-ins to be useful. When that happens, the addressable population changes shape entirely.</p>
+
+      <h2>The enterprise gate</h2>
+      <p>Companies are slow-moving animals, and risk-averse for reasons that are usually good ones. Three conditions have to hold before an organization moves at scale, and they are conjunctive rather than optional.</p>
+      <p><strong>The data has to stay theirs.</strong> Not <em>probably</em> theirs, not theirs by terms of service. Provably, contractually, architecturally theirs &mdash; which is why so much enterprise deployment routes through private tenancy, business associate agreements, and inference that never leaves a boundary they control.</p>
+      <p><strong>The cost of inference has to return something.</strong> A pilot that improves a workflow by a margin nobody can measure does not survive the next budget cycle, however impressive the demo.</p>
+      <p><strong>Intrusion has to be preventable.</strong> A new surface that touches every system and every record is a new attack surface, and it will be evaluated as one.</p>
+      <p>Until all three hold, diffusion is metered no matter what the models can do. This is not resistance to change. It is the ordinary operation of institutions that carry liability.</p>
+
+      <h2>The creator ratio</h2>
+      <p>Online communities settle into a familiar distribution: roughly ninety percent consume, nine percent contribute or adapt, one percent create. AI adoption looks much the same. Most people will use whatever is put in front of them. Some will configure and extend it. Very few will build.</p>
+      <p>A great deal of current product thinking assumes the opposite &mdash; that users will learn to prompt, chain, and orchestrate. That is a strategy aimed at the one percent. For everyone else the technology simply has to work, the first time, without a course.</p>
+
+      <h2>Why the three belong together</h2>
+      <p>Each gate is usually discussed on its own, and each looks like a different kind of problem. Put together, they point the same direction.</p>
+      <p>Built-for-builders is a harness problem. The enterprise gate is a harness problem. The creator ratio is a harness problem. None of them is a model problem, and none of them gets solved by a larger model.</p>
+      <p>That is the practical case for the layer that sits between the model and the person: the orchestration, the boundaries, the connectors, the safety monitoring, the memory, the things that make a capable model into something an ordinary person can rely on without thinking about it. In healthcare that layer barely exists yet, which is why <a href="/essays/the-companion-layer/">the models are further along than the architecture</a>.</p>
+      <p>It also suggests the timeline argument is running on the wrong variable. The question is not when models get good enough. They are already more capable than most deployments make use of. The question is when the harness gets boring enough that nobody has to think about it.</p>
+    </div>
+
+    <div class="appears">
+      <h3>Where this appears</h3>
+      <ul>
+        <li><a href="/essays/the-companion-layer/">The Companion Layer</a></li>
+        <li><a href="/essays/the-three-clocks/">The Three Clocks</a></li>
+      </ul>
+    </div>
+
+    <a class="back-link" href="/concepts/">← All concepts</a>
+  </article>
+
+  <footer class="foot">
+    <div>
+      <div>Ben Wilson · What Health Becomes</div>
+      <p class="disclaimer">Everything here is my own work and my own opinion. It does not represent the views of my employer, and contains no employer information of any kind.</p>
+    </div>
+    <div>
+      <a href="/essays/">Essays</a> ·
+      <a href="/concepts/">Concepts</a> ·
+      <a href="/reading/">Reading</a>
+        <a href="/about/">About</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -8,6 +8,17 @@
 <meta name="author" content="Ben Wilson">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+html[data-theme="light"] {
+  --bg: #FBF9F5; --bg-card: #FFFFFF; --bg-card-hover: #F5F1EA;
+  --border: #DDD8CE; --border-light: #C9C3B8;
+  --text: #16181A; --text-muted: #5C6066; --text-dim: #8B8579;
+  --clock1: #12564C; --clock1-bg: rgba(18,86,76,0.07); --clock1-border: rgba(18,86,76,0.3);
+  --clock2: #4A3D6B; --clock2-bg: rgba(74,61,107,0.07); --clock2-border: rgba(74,61,107,0.3);
+  --clock3: #A8492A; --clock3-bg: rgba(168,73,42,0.06); --clock3-border: rgba(168,73,42,0.3);
+  --layer4: #2A6FA8; --layer4-bg: rgba(42,111,168,0.06); --layer4-border: rgba(42,111,168,0.28);
+  --accent-warm: #B08428; --accent-rose: #B0526B; --accent-blue: #2A6FA8;
+  --patient: #2E7D6A; --ai: #6A4C93; --team: #B08428;
+}
 :root {
   --bg: #0a0e1a;
   --bg-card: #111827;
@@ -582,12 +593,13 @@ body {
 </style>
 </head>
 <body>
-<div style="position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,14,26,0.94);
-  border-bottom:1px solid #1e293b;padding:11px 22px;display:flex;justify-content:space-between;align-items:center;
+<div style="position:fixed;top:0;left:0;right:0;z-index:200;background:var(--bg);
+  border-bottom:1px solid var(--border);padding:11px 22px;display:flex;justify-content:space-between;align-items:center;
   font-family:'DM Sans',sans-serif">
-  <a href="/essays/the-three-clocks/" style="color:#94a3b8;text-decoration:none;font-size:12.5px">&#8592; Back to The Three Clocks</a>
-  <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:#64748b">Pinch or scroll to explore</span>
-  <span style="font-family:'DM Serif Display',serif;font-size:14px;color:#e2e8f0">What Health <em style="color:#22d3ee">Becomes</em></span>
+  <a href="/essays/the-three-clocks/" style="color:var(--text-muted);text-decoration:none;font-size:12.5px">&#8592; Back to The Three Clocks</a>
+  <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-dim)">Pinch or scroll to explore</span>
+  <button id="mtoggle" style="background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:2px;cursor:pointer">Light</button>
+  <span style="font-family:'DM Serif Display',serif;font-size:14px;color:var(--text)">What Health <em style="color:var(--clock1)">Becomes</em></span>
 </div>
 <div style="height:44px"></div>
 
@@ -696,7 +708,7 @@ body {
   <div class="clock-label">
     <div class="clock-horizon">YEARS → LIFETIME</div>
     <div class="clock-name">Clock 1</div>
-    <div class="clock-desc">Longitudinal Health Identity — who this person is, where they're headed, what matters to them</div>
+    <div class="clock-desc">Longitudinal Health Identity — who this person is, where they're headed, what matters to them<br><span style="color:var(--clock1);font-weight:600">Maintained as the Trajectory Record</span></div>
   </div>
   <div class="clock-content">
     <div class="clock-cell">
@@ -780,7 +792,7 @@ body {
   <div class="clock-label">
     <div class="clock-horizon">DAYS → MONTHS</div>
     <div class="clock-name">Clock 2</div>
-    <div class="clock-desc">Destabilization Management — chronic care, extended episodes, coordination, drift detection</div>
+    <div class="clock-desc">Destabilization Management — chronic care, extended episodes, coordination, drift detection<br><span style="color:var(--clock2);font-weight:600">Maintained as the Coordination Record</span></div>
   </div>
   <div class="clock-content">
     <div class="clock-cell">
@@ -1047,6 +1059,16 @@ body {
 </div>
 
 <!-- COMPETITIVE -->
+<div class="flow-card" style="border-top:0">
+  <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--clock1),var(--clock2))"></div>
+  <div class="flow-title">The Two Records</div>
+  <div class="flow-content">
+    <strong style="color:var(--clock1)">Trajectory Record &middot; clock one.</strong> Who this person is, where their health is headed, what matters to them. Clinical state, goals, treatment response, social context, projected path. Slow, interpretive, genuinely hard &mdash; ontology, projection, goals modeling. Updated after episodes and goal conversations.<br><br>
+    <strong style="color:var(--clock2)">Coordination Record &middot; clock two.</strong> What is open right now, who owns it, what turn it is on, what is overdue &mdash; across every service line and channel. Fast, operational, far more tractable. It is work-tracking that crosses organizational boundaries.<br><br>
+    <strong style="color:var(--text)">Conflating them is a reliable way to build the wrong thing.</strong> Most of the burden handed to families comes from the absence of the second. The outcome measure for both is completion: whether care was obtained, and whether the plan survived after the visit.
+  </div>
+</div>
+
 <div class="flow-card compete-card">
   <div class="flow-title">Competitive Landscape & Strategic Window</div>
   <div class="compete-item">
@@ -1089,5 +1111,23 @@ body {
 
 </div><!-- end container -->
 
+<script>
+(function(){
+  var K='whb-model-theme';
+  var saved=null; try{saved=localStorage.getItem(K);}catch(e){}
+  var t = saved || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  document.addEventListener('DOMContentLoaded', function(){
+    var b=document.getElementById('mtoggle'); if(!b) return;
+    function lab(){ return document.documentElement.getAttribute('data-theme')==='dark' ? 'Light' : 'Dark'; }
+    b.textContent=lab();
+    b.addEventListener('click',function(){
+      var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',n); b.textContent=lab();
+      try{localStorage.setItem(K,n);}catch(e){}
+    });
+  });
+})();
+</script>
 </body>
 </html>
