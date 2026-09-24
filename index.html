@@ -13,230 +13,215 @@
 <meta property="og:description" content="If AI changes what's possible, what should healthcare become? Notes from inside (and outside) the system.">
 <meta property="og:url" content="https://whathealthbecomes.com/">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://whathealthbecomes.com/assets/img/lifetime-trail-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A trail winds toward a distant ridge, with one walker partway up.">
+<meta name="twitter:image" content="https://whathealthbecomes.com/assets/img/lifetime-trail-og.jpg">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
 <script src="/assets/theme.js"></script>
 <script src="/assets/lightbox.js" defer></script>
 </head>
 <body>
-<div class="shell">
-
+<div class="strip"><div class="wide strip-in"><span>Field notes from inside the system</span><span>Ben Wilson · 22 years in health system operations</span></div></div>
+<div class="wide">
   <nav class="nav">
     <a class="nav-brand" href="/">What Health <em>Becomes</em></a>
     <div class="nav-right">
       <div class="nav-links">
-        <a href="/essays/">Essays</a>
-        <a href="/concepts/">Concepts</a>
+        <a href="/essays/">All notes</a>
+        <a href="/concepts/">Vocabulary</a>
         <a href="/reading/">Reading</a>
         <a href="/about/">About</a>
       </div>
+      <a class="nav-sub" href="#subscribe">Subscribe</a>
       <button class="theme-toggle" type="button" aria-label="Toggle color theme">Dark</button>
     </div>
   </nav>
+</div>
 
-  <header class="hero">
-    <div class="eyebrow">If AI changes what's possible, what should healthcare become?</div>
-    <h1 class="hero-h">People live their health over a lifetime. The system sees them <em>twenty minutes at a time.</em></h1>
-    <p class="hero-sub">Notes from inside (and outside) the system, on the care model we could build instead.</p>
-
-    <div class="clockspan">
-      <div class="cs-row">
-        <div class="cs-label">Lifetime</div>
-        <div class="cs-track"><div class="cs-fill" style="width:100%;background:var(--clock1)"></div></div>
-      </div>
-      <div class="cs-row">
-        <div class="cs-label">Months</div>
-        <div class="cs-track"><div class="cs-fill" style="width:34%;background:var(--clock2)"></div></div>
-      </div>
-      <div class="cs-row">
-        <div class="cs-label">Minutes</div>
-        <div class="cs-track"><div class="cs-fill" style="width:3%;background:var(--clock3)"></div></div>
-      </div>
-      <div class="cs-caption">The system is built almost entirely for the bottom row.</div>
-    </div>
-  </header>
-
-  <section class="band">
-    <div class="band-label">Essays</div>
-
-    <article class="entry">
-      <div class="entry-meta">Draft in progress · The spine essay</div>
-      <h2 class="entry-title"><a href="/essays/the-aperture-problem/">The Aperture Problem</a></h2>
-      <p class="entry-dek">Healthcare pushes its coordination work onto patients and families because everything must pass through one narrow opening. Why that happens, what it costs, and what becomes possible when software can absorb the work instead of streamlining it.</p>
-    </article>
-
-    <article class="entry">
-      <div class="entry-meta">Draft &middot; Series</div>
-      <h2 class="entry-title"><a href="/essays/the-three-clocks/">The Three Clocks</a></h2>
-      <p class="entry-dek">People live their health over a lifetime. Healthcare should be there for the long haul. The care model that follows from taking that seriously.</p>
-    </article>
-
-    <article class="entry">
-      <div class="entry-meta">Draft &middot; Series</div>
-      <h2 class="entry-title"><a href="/essays/the-companion-layer/">The Companion Layer</a></h2>
-      <p class="entry-dek">A personal health companion is not a better portal. It is a different surface, with a specific architecture &mdash; and the constraint has shifted from what we can build to whether patients and health systems would use it.</p>
-    </article>
-
-
-    <article class="entry pending">
-      <div class="entry-meta">Coming</div>
-      <h2 class="entry-title">The Arithmetic</h2>
-      <p class="entry-dek">Demand rising, the clinical workforce retiring, and the family caregivers who absorb the overflow thinning out — all arriving at once. This is not a forecast. The people are already alive and their ages are known.</p>
-    </article>
-  </section>
-
-  <section class="band">
-    <div class="band-label">The model</div>
-    <div class="teaser">
-<svg viewBox="-20 -14 960 470" class="figsvg" xmlns="http://www.w3.org/2000/svg">
-
-
-
-<!-- life stages -->
-<line x1="150" y1="20" x2="900" y2="20" stroke="var(--rule)" stroke-width="1"/>
-<g class="mono" font-size="8.5" fill="var(--ink-3)">
-  <text x="150" y="14">BIRTH</text>
-  <text x="900" y="14" text-anchor="end">END OF LIFE</text>
-</g>
-<g stroke="var(--rule)" stroke-width="1">
-  <line x1="300" y1="20" x2="300" y2="386"/><line x1="450" y1="20" x2="450" y2="386"/>
-  <line x1="600" y1="20" x2="600" y2="386"/><line x1="750" y1="20" x2="750" y2="386"/>
-</g>
-<g font-size="10.5" fill="var(--ink-2)">
-  <text x="158" y="38">Foundation</text><text x="308" y="38">Active health</text>
-  <text x="458" y="38">Chronic onset</text><text x="608" y="38">Medicare transition</text>
-  <text x="758" y="38">Late life</text>
-</g>
-<g class="mono" font-size="8" fill="var(--ink-3)">
-  <text x="158" y="51">0–25</text><text x="308" y="51">25–50</text><text x="458" y="51">50–65</text>
-  <text x="608" y="51">65–80</text><text x="758" y="51">80+</text>
-</g>
-
-<!-- CLOCK ONE -->
-<text x="138" y="92" text-anchor="end" class="serif" font-size="15" fill="var(--clock1)">Clock one</text>
-<text x="138" y="107" text-anchor="end" class="mono" font-size="8" fill="var(--ink-3)">YEARS — LIFETIME</text>
-<rect x="150" y="76" width="750" height="40" fill="var(--clock1)" fill-opacity="0.07"/>
-<line x1="150" y1="76" x2="900" y2="76" stroke="var(--clock1)" stroke-width="1"/>
-<line x1="150" y1="116" x2="900" y2="116" stroke="var(--clock1)" stroke-width="1"/>
-<text x="162" y="94" font-size="11" fill="var(--ink)">Health identity &#183; genetics, early life, family history, behavior over time</text>
-<text x="162" y="109" font-size="11" fill="var(--clock1)">and, above all, the goals &#8212; which change as the life does</text>
-<g class="mono" font-size="7.5" fill="var(--ink-2)">
-  <text x="162" y="132">STARTING POINT</text><text x="312" y="132">PREVENTION &#183; HABITS</text>
-  <text x="462" y="132">TRAJECTORY BENDS</text><text x="612" y="132">FUNCTION &gt; NUMBERS</text>
-  <text x="762" y="132">WHAT MATTERS NOW</text>
-</g>
-
-<!-- CLOCK TWO -->
-<text x="138" y="180" text-anchor="end" class="serif" font-size="15" fill="var(--clock2)">Clock two</text>
-<text x="138" y="195" text-anchor="end" class="mono" font-size="8" fill="var(--ink-3)">DAYS — MONTHS</text>
-<line x1="150" y1="186" x2="900" y2="186" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2,4"/>
-<g fill="var(--clock2)" fill-opacity="0.13" stroke="var(--clock2)" stroke-opacity="0.5" stroke-width="0.8">
-  <rect x="352" y="174" width="54" height="24"/>
-  <rect x="486" y="174" width="86" height="24"/>
-  <rect x="628" y="174" width="74" height="24"/>
-  <rect x="762" y="174" width="112" height="24"/>
-</g>
-<g font-size="9" fill="var(--clock2)" text-anchor="middle">
-  <text x="379" y="190">injury</text><text x="529" y="190">new diagnosis</text>
-  <text x="665" y="190">hospital stay</text><text x="818" y="190">decline &#183; palliation</text>
-</g>
-<text x="150" y="218" font-size="11" fill="var(--ink)">Destabilization. Where most suffering and most cost accumulate,</text>
-<text x="150" y="233" font-size="11" fill="var(--ink-2)">and where the system is most manual and disjointed.</text>
-<text x="150" y="252" class="mono" font-size="7.5" fill="var(--ink-3)">PHARMACY &#183; SPECIALTY &#183; PRIMARY CARE &#183; REHAB &#183; HOME HEALTH &#183; PALLIATIVE</text>
-<text x="150" y="267" font-size="10.5" fill="var(--clock3)" font-style="italic">The default quarterback is the patient, or a family member.</text>
-
-<!-- CLOCK THREE -->
-<text x="138" y="310" text-anchor="end" class="serif" font-size="15" fill="var(--clock3)">Clock three</text>
-<text x="138" y="325" text-anchor="end" class="mono" font-size="8" fill="var(--ink-3)">MINUTES — DAYS</text>
-<line x1="150" y1="316" x2="900" y2="316" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2,4"/>
-<g stroke="var(--clock3)" stroke-width="2">
-  <line x1="176" y1="306" x2="176" y2="326"/><line x1="204" y1="306" x2="204" y2="326"/>
-  <line x1="238" y1="306" x2="238" y2="326"/><line x1="272" y1="306" x2="272" y2="326"/>
-  <line x1="316" y1="306" x2="316" y2="326"/><line x1="344" y1="306" x2="344" y2="326"/>
-  <line x1="386" y1="306" x2="386" y2="326"/><line x1="424" y1="306" x2="424" y2="326"/>
-  <line x1="466" y1="306" x2="466" y2="326"/><line x1="498" y1="306" x2="498" y2="326"/>
-  <line x1="536" y1="306" x2="536" y2="326"/><line x1="574" y1="306" x2="574" y2="326"/>
-  <line x1="612" y1="306" x2="612" y2="326"/><line x1="646" y1="306" x2="646" y2="326"/>
-  <line x1="682" y1="306" x2="682" y2="326"/><line x1="716" y1="306" x2="716" y2="326"/>
-  <line x1="752" y1="306" x2="752" y2="326"/><line x1="786" y1="306" x2="786" y2="326"/>
-  <line x1="818" y1="306" x2="818" y2="326"/><line x1="856" y1="306" x2="856" y2="326"/>
-</g>
-<text x="150" y="348" font-size="11" fill="var(--ink)">The acute encounter. A cold, a knee, a sports physical.</text>
-<text x="150" y="363" font-size="11" fill="var(--ink-2)">Real care that matters &#8212; and in the grand scheme of a life, the grains of rice.</text>
-<text x="150" y="382" class="mono" font-size="7.5" fill="var(--ink-3)">A DEFINED TASK &#183; A DEFINED VISIT &#183; A DEFINED BILL &#8212; WHICH IS WHY WE BUILT FOR IT</text>
-
-<!-- punchline -->
-<line x1="0" y1="406" x2="900" y2="406" stroke="var(--rule)" stroke-width="1"/>
-<text x="0" y="430" class="serif" font-size="15.5" fill="var(--ink)">Patients live on clock one, deteriorate on clock two, and are seen on clock three.</text>
-<text x="0" y="450" font-size="12" fill="var(--ink-2)">The structures we build to manage one and two are anchored inside three.</text>
-</svg>
-
-      <div class="teaser-cap"><span>Three timescales, running at once, across a single life.</span><a href="/essays/the-three-clocks/">Read The Three Clocks &#8594;</a></div>
-    </div>
-  </section>
-
-  <section class="band">
-    <div class="band-label">Concepts</div>
-    <div class="concept-grid">
-      <div class="concept-cell">
-        <h3><a href="/concepts/aperture-problem/">The Aperture Problem</a></h3>
-        <p>Nearly everything in healthcare passes through one narrow opening. Whatever cannot fit is refused, and refused demand lands on families.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/three-clocks/">The Three Clocks</a></h3>
-        <p>People live their health on three timescales at once. The system is built for the shortest of them.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/absorb-vs-streamline/">Absorb vs. Streamline</a></h3>
-        <p>Every prior wave of health technology made the existing channel faster. Absorbing the work is a different thing entirely.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/divergence-over-thresholds/">Divergence over Thresholds</a></h3>
-        <p>The same reading means different things on different trajectories. Alert on departure from the expected path, not a population cutoff.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/orchestration-layer/">The Orchestration Layer</a></h3>
-        <p>The connective layer between capable models and useful care. Almost everything below it already exists; almost none of it does.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/metered-adoption/">Metered Adoption</a></h3>
-        <p>Diffusion is not paced by model capability. Three gates meter it, and all three open on the harness rather than the model.</p>
-      </div>
-      <div class="concept-cell pending">
-        <h3>The Scissors</h3>
-        <p>Three supply-and-demand curves closing at once, on a schedule already set by demography.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/trajectory-record/">The Trajectory Record</a></h3>
-        <p>What the medical record becomes when it stops being static. Not a digital twin, not a risk score.</p>
-      </div>
-      <div class="concept-cell">
-        <h3><a href="/concepts/coordination-record/">The Coordination Record</a></h3>
-        <p>What is open right now, who owns it, and what is overdue. The faster record healthcare does not keep.</p>
+<section class="h-hero" aria-labelledby="h-title">
+  <div class="wide">
+    <div class="mono-lab h-eyebrow">If AI changes what's possible, what should healthcare become?</div>
+    <h1 class="h-title" id="h-title">People live their health over a lifetime. The system sees them <em>twenty minutes at a time.</em></h1>
+    <div class="h-model-scroll">
+      <div class="h-model">
+        <div class="h-stages">
+          <div class="h-dim" style="align-self:end;padding-bottom:10px">ACROSS A SINGLE LIFE</div>
+          <div class="h-stage" style="border-color:#22D3EE"><b>Foundation</b><span>0–25</span></div>
+          <div class="h-stage" style="border-color:#6FB5F0"><b>Active health</b><span>25–50</span></div>
+          <div class="h-stage" style="border-color:#A78BFA"><b>Chronic onset</b><span>50–65</span></div>
+          <div class="h-stage" style="border-color:#F97316"><b>Medicare transition</b><span>65–80</span></div>
+          <div class="h-stage" style="border-color:#FB7185"><b>Late life</b><span>80+</span></div>
+        </div>
+        <div class="h-traj">
+          <div class="h-dim">ONE PATIENT'S TRAJECTORY</div>
+          <svg viewBox="0 0 910 120" role="img" aria-label="One patient's health trajectory against the expected path, bending at an injury, a diabetes diagnosis, a hospitalization, a heart failure diagnosis, a goals reset, and a shift to comfort focus.">
+            <path d="M0,86 C120,80 240,54 360,46 C480,38 600,36 700,50 C780,62 850,76 910,92" fill="none" stroke="#34D399" stroke-width="1.6" stroke-dasharray="6 5" opacity="0.6"/>
+            <path d="M0,86 C80,82 150,64 200,58 C240,54 250,72 280,68 C330,60 380,46 420,44 C450,43 470,58 490,62 C520,66 560,50 600,48 C650,46 670,62 700,68 C740,74 780,70 820,78 C860,86 890,96 910,102" fill="none" stroke="#E2E8F0" stroke-width="2.2"/>
+            <circle cx="270" cy="70" r="5" fill="#F97316"/><text x="270" y="94" font-size="10.5" fill="#94A3B8" text-anchor="middle">Injury</text>
+            <circle cx="420" cy="44" r="5" fill="#A78BFA"/><text x="420" y="30" font-size="10.5" fill="#94A3B8" text-anchor="middle">Diabetes diagnosis</text>
+            <circle cx="490" cy="62" r="5" fill="#F97316"/><text x="490" y="86" font-size="10.5" fill="#94A3B8" text-anchor="middle">Hospitalization</text>
+            <circle cx="600" cy="48" r="5" fill="#A78BFA"/><text x="600" y="34" font-size="10.5" fill="#94A3B8" text-anchor="middle">Heart failure diagnosis</text>
+            <circle cx="700" cy="68" r="5" fill="#22D3EE"/><text x="700" y="92" font-size="10.5" fill="#94A3B8" text-anchor="middle">Goals reset</text>
+            <circle cx="820" cy="78" r="5" fill="#FB7185"/><text x="820" y="64" font-size="10.5" fill="#94A3B8" text-anchor="middle">Comfort focus</text>
+            <text x="0" y="116" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1" fill="#7C8BA0">── ACTUAL     - - EXPECTED</text>
+          </svg>
+        </div>
+        <div class="h-row">
+          <div class="h-rowlab" style="background:rgba(34,211,238,0.08)"><div class="h-dim">YEARS TO A LIFETIME</div><div class="nm" style="color:#22D3EE">Clock one</div><div class="ds">Health identity: who this person is, where they are headed, what matters</div><div class="rec" style="color:#22D3EE">Held as the trajectory record</div></div>
+          <div class="h-cells"><div class="h-cell"><div class="ld">Genetics and early life</div><div class="rest">Family history · social baseline</div></div><div class="h-cell"><div class="ld">Behavior patterns form</div><div class="rest">Life goals captured · wearable data</div></div><div class="h-cell"><div class="ld">Multi-condition trajectory</div><div class="rest">Treatment response history</div></div><div class="h-cell"><div class="ld">Goals realigned</div><div class="rest">Function trending · advance directives</div></div><div class="h-cell"><div class="ld">Comfort-focused goals</div><div class="rest">Directives govern · legacy and dignity</div></div></div>
+        </div>
+        <div class="h-row">
+          <div class="h-rowlab" style="background:rgba(167,139,250,0.08)"><div class="h-dim">DAYS TO MONTHS</div><div class="nm" style="color:#A78BFA">Clock two</div><div class="ds">Destabilization: chronic care, episodes, coordination, drift</div><div class="rec" style="color:#A78BFA">Held as the coordination record</div></div>
+          <div class="h-cells"><div class="h-cell"><div class="ld">Well-child care</div><div class="rest">Vaccination schedules</div></div><div class="h-cell"><div class="ld">Screening and early detection</div><div class="rest">Drift monitoring · remote monitoring</div></div><div class="h-cell"><div class="ld">Chronic condition management</div><div class="rest">Hospitalization shepherding · patient off coordination duty</div></div><div class="h-cell"><div class="ld">Multi-condition orchestration</div><div class="rest">Hospital to home · caregiver support</div></div><div class="h-cell"><div class="ld">Palliative trajectory</div><div class="rest">Hospice coordination · family support</div></div></div>
+        </div>
+        <div class="h-row">
+          <div class="h-rowlab" style="background:rgba(249,115,22,0.08)"><div class="h-dim">MINUTES TO DAYS</div><div class="nm" style="color:#F97316">Clock three</div><div class="ds">The acute encounter: triage, decisions, the visit</div></div>
+          <div class="h-cells"><div class="h-cell"><div class="ld">Acute illness</div><div class="rest">Injury care</div></div><div class="h-cell"><div class="ld">Asynchronous visits</div><div class="rest">Triage and routing</div></div><div class="h-cell"><div class="ld">Context-rich acute care</div><div class="rest">Emergency visits arrive with context</div></div><div class="h-cell"><div class="ld">Goal-informed decisions</div><div class="rest">Directives shape disposition</div></div><div class="h-cell"><div class="ld">Comfort-aligned care</div><div class="rest">Goals prevent unwanted treatment</div></div></div>
+        </div>
+        <div class="h-row">
+          <div class="h-rowlab" style="background:rgba(16,185,129,0.08)"><div class="h-dim">CONTINUOUS</div><div class="nm" style="color:#10B981">Learning layer</div><div class="ds">Outcomes, calibration, equity, governance</div></div>
+          <div class="h-cells"><div class="h-cell"><div class="ld">Population baselines</div><div class="rest">Equity baselines</div></div><div class="h-cell"><div class="ld">Prevention effectiveness</div><div class="rest">Risk calibration</div></div><div class="h-cell"><div class="ld">Full learning loop</div><div class="rest">Outcomes by population</div></div><div class="h-cell"><div class="ld">Goal concordance</div><div class="rest">Spending per trajectory</div></div><div class="h-cell"><div class="ld">Comfort care outcomes</div><div class="rest">Family experience</div></div></div>
+        </div>
+        <div class="h-records">
+          <div class="h-rcard" style="border-top:2px solid #22D3EE"><b style="color:#22D3EE">The trajectory record · clock one</b><p>Who this person is, where their health is headed, what matters to them. Slow, clinical, and genuinely hard.</p></div>
+          <div class="h-rcard" style="border-top:2px solid #A78BFA"><b style="color:#A78BFA">The coordination record · clock two</b><p>What is open right now, who owns it, what is overdue. Fast, operational, and far more tractable.</p></div>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="h-dim h-scrollhint">SCROLL SIDEWAYS TO SEE ALL FIVE LIFE STAGES →</div>
+    <div class="h-controls">
+      <div class="left">
+        <button class="h-toggle" type="button" aria-expanded="false">Expand the model</button>
+        <a href="/essays/the-three-clocks/model/">Open the full model, layer by layer →</a>
+      </div>
+      <span class="h-line">Patients live on clock one, deteriorate on clock two, and are seen on clock three.</span>
+    </div>
+  </div>
+</section>
 
-  <section class="subscribe">
-    <h3>Get new essays by email</h3>
-    <p>One essay every two or three weeks. No cadence promises beyond that, and nothing else.</p>
-    <a class="btn" href="#">Subscribe</a>
-  </section>
+<section class="h-latest">
+  <div class="wide h-latest-grid">
+    <div>
+      <div class="h-badges mono-lab"><span class="h-badge">Latest</span><span style="color:var(--ink-3)">Note 03 · about 10 min · 3 figures · 13 references</span></div>
+      <h2><a href="/essays/the-companion-layer/">The Companion Layer</a></h2>
+      <p class="h-dek">A personal health companion is not a better portal. It is a different surface, with a specific architecture, most of which now exists — and the constraint has shifted from what we can build to whether we can tell if it works.</p>
+      <a class="h-latest-img" href="/essays/the-companion-layer/" aria-label="Read The Companion Layer">
+        <img src="/assets/img/paper-ribbon-circle-1600.webp" srcset="/assets/img/paper-ribbon-circle-800.webp 800w, /assets/img/paper-ribbon-circle-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 44rem" width="1600" height="900" alt="Blank messages pass through a hovering circle and become one ribbon flowing toward a seated person." decoding="async">
+      </a>
+      <div class="h-cta"><a class="btn-ink" href="/essays/the-companion-layer/">Read note 03</a><a class="lnk" href="/essays/the-aperture-problem/">Start from note 01 →</a></div>
+    </div>
+    <aside class="h-aside" aria-label="From the latest note">
+      <div><div class="mono-lab" style="color:var(--ink-3)">The series · 3 of 7</div><div class="h-track"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="h-note" style="border-color:var(--clock1)"><div class="mono-lab" style="color:var(--clock1)">Evidence</div><p>230 million people ask a general AI assistant health questions every week.</p></div>
+      <div class="h-note" style="border-color:var(--clock3)"><div class="mono-lab" style="color:var(--clock3)">Counterpoint</div><p>In the only independent test, that assistant under-triaged 52 percent of emergencies.</p></div>
+      <div class="h-note" style="border-color:var(--clock2)"><div class="mono-lab" style="color:var(--clock2)">Open question</div><p>Who owns an open item when it crosses an organizational boundary?</p></div>
+    </aside>
+  </div>
+</section>
 
+<section class="h-stats">
+  <div class="wide">
+    <div class="h-stats-head"><h2>The arithmetic, briefly</h2><span class="mono-lab">Every number is sourced in the notes</span></div>
+    <div class="h-stat-grid">
+      <div class="h-stat" style="border-color:#A8492A"><div class="n">26.7</div><p>hours a day a primary care physician would need to deliver the care guidelines recommend.</p><div class="src">PORTER ET AL. · JGIM 2022</div></div>
+      <div class="h-stat" style="border-color:#7A68A8"><div class="n">229</div><p>other physicians a typical primary care doctor shares Medicare patients with.</p><div class="src">PHAM ET AL. · ANN INTERN MED 2009</div></div>
+      <div class="h-stat" style="border-color:#2E8B7A"><div class="n">230M</div><p>people asking a general AI assistant health and wellness questions every week.</p><div class="src">OPENAI · 2026</div></div>
+      <div class="h-stat" style="border-color:#B08428"><div class="n">52%</div><p>of true emergencies under-triaged by that assistant in the only independent evaluation.</p><div class="src">NATURE MEDICINE · 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="h-series">
+  <div class="wide">
+    <div class="h-sec-head"><h2>The series so far</h2><a class="lnk" href="/essays/">All notes →</a></div>
+    <div class="h-cards">
+      <article class="h-card">
+        <a class="h-card-img" href="/essays/the-aperture-problem/" aria-label="Read The Aperture Problem"><img src="/assets/img/caregiving-still-life-800.webp" srcset="/assets/img/caregiving-still-life-800.webp 800w, /assets/img/caregiving-still-life-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 23rem" width="1600" height="900" alt="A quiet kitchen table with a pill organizer, letters, a calendar, two mugs and an empty chair." loading="lazy" decoding="async"></a>
+        <div class="mono-lab">Note 01 · about 14 min</div>
+        <h3><a href="/essays/the-aperture-problem/">The Aperture Problem</a></h3>
+        <p>It starts with my grandmother, and with my mother, who became her partner in health. Why coordination lands on families.</p>
+      </article>
+      <article class="h-card">
+        <a class="h-card-img" href="/essays/the-three-clocks/" aria-label="Read The Three Clocks"><img src="/assets/img/lifetime-trail-800.webp" srcset="/assets/img/lifetime-trail-800.webp 800w, /assets/img/lifetime-trail-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 23rem" width="1600" height="900" alt="A trail winds past small campsites toward a distant ridge, with one walker and a passing weather shadow." loading="lazy" decoding="async"></a>
+        <div class="mono-lab">Note 02 · about 12 min</div>
+        <h3><a href="/essays/the-three-clocks/">The Three Clocks</a></h3>
+        <p>People live their health over a lifetime. Healthcare should be there for the long haul.</p>
+      </article>
+      <article class="h-card">
+        <div class="h-pending" aria-hidden="true">
+          <svg viewBox="0 0 320 180"><path d="M10,140 C80,130 150,100 220,86 C260,78 290,76 310,74" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-dasharray="5 5"/><path d="M10,140 C80,130 150,102 190,94 C220,88 240,110 270,130 C290,142 300,150 310,156" fill="none" stroke="var(--clock3)" stroke-width="2.2"/><circle cx="214" cy="96" r="7" fill="none" stroke="var(--clock3)" stroke-width="1.6"/><text x="16" y="28" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1" fill="var(--ink-2)">DIVERGES HERE ·</text><text x="16" y="44" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1" fill="var(--ink-2)">NO THRESHOLD CROSSED</text><line x1="130" y1="40" x2="206" y2="90" stroke="var(--ink-3)" stroke-width="0.8"/></svg>
+        </div>
+        <div class="mono-lab" style="color:var(--clock3)">Note 04 · in progress</div>
+        <h3>Divergence, Not Thresholds</h3>
+        <p>What changes when a system watches a person's expected path instead of a population cutoff.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="h-quote">
+  <div class="wide h-quote-grid">
+    <div class="h-qmark" aria-hidden="true">&#8220;</div>
+    <div>
+      <blockquote>Nobody was missing a projection of my grandmother's ten-year trajectory. What was missing was a list of open items, with owners and due dates.</blockquote>
+      <div class="mono-lab">From <a href="/essays/the-aperture-problem/">note 01 · The Aperture Problem</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="h-vocab">
+  <div class="wide">
+    <div class="h-sec-head"><h2>The working vocabulary</h2>
+      <div class="h-legend"><span><i style="background:var(--clock3)"></i>Diagnosis</span><span><i style="background:var(--clock1)"></i>The model</span><span><i style="background:var(--clock2)"></i>Architecture</span></div>
+    </div>
+    <div class="h-vgrid">
+      <div class="h-v" style="border-color:var(--clock3)"><a href="/concepts/aperture-problem/">The Aperture Problem</a><p>Everything passes through one narrow opening. What cannot fit lands on families.</p></div>
+      <div class="h-v" style="border-color:var(--clock3)"><a href="/concepts/absorb-vs-streamline/">Absorb vs. Streamline</a><p>A faster channel is not the same as taking work off it.</p></div>
+      <div class="h-v" style="border-color:var(--clock1)"><a href="/concepts/three-clocks/">The Three Clocks</a><p>People live on three timescales at once. The system is built for the shortest.</p></div>
+      <div class="h-v" style="border-color:var(--clock1)"><a href="/concepts/divergence-over-thresholds/">Divergence over Thresholds</a><p>Alert on departure from this person's path, not a population cutoff.</p></div>
+      <div class="h-v" style="border-color:var(--clock1)"><a href="/concepts/trajectory-record/">The Trajectory Record</a><p>What the medical record becomes when it stops being static.</p></div>
+      <div class="h-v" style="border-color:var(--clock1)"><a href="/concepts/coordination-record/">The Coordination Record</a><p>What is open right now, who owns it, and what is overdue.</p></div>
+      <div class="h-v" style="border-color:var(--clock2)"><a href="/concepts/orchestration-layer/">The Orchestration Layer</a><p>The connective layer between capable models and useful care.</p></div>
+      <div class="h-v" style="border-color:var(--clock2)"><a href="/concepts/metered-adoption/">Metered Adoption</a><p>Three gates meter AI diffusion, and all three open on the harness.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="h-sub" id="subscribe">
+  <div class="wide h-sub-grid">
+    <div><h2>Get the next note.</h2><p>Every two or three weeks. Nothing else in your inbox.</p></div>
+    <a class="h-sub-btn" href="#subscribe">Subscribe</a>
+  </div>
+</section>
+
+<div class="wide">
   <footer class="foot">
     <div>
       <div>Ben Wilson · What Health Becomes</div>
       <p class="disclaimer">Everything here is my own work and my own opinion. It does not represent the views of my employer, and contains no employer information of any kind.</p>
     </div>
     <div>
-      <a href="/essays/">Essays</a> ·
-      <a href="/concepts/">Concepts</a> ·
-      <a href="/reading/">Reading</a>
-        <a href="/about/">About</a>
+      <a href="/essays/">All notes</a> ·
+      <a href="/concepts/">Vocabulary</a> ·
+      <a href="/reading/">Reading</a> ·
+      <a href="/about/">About</a>
     </div>
   </footer>
-
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var hero = document.querySelector('.h-hero'), btn = document.querySelector('.h-toggle');
+  if (!hero || !btn) return;
+  btn.addEventListener('click', function () {
+    var on = hero.classList.toggle('expanded');
+    btn.textContent = on ? 'Collapse the model' : 'Expand the model';
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+  });
+});
+</script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2ef9de8db0c1407a9ea545fb4798ae06"}'></script>
 </body>
